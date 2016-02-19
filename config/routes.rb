@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  get 'login/signup'
+
   get 'login/login'
+  
+  resources :login
 
 
   root 'login#login'
