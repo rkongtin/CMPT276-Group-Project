@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  get 'users/login'
+  
+  #resources :login #this is now useless, don't know the reason login view caused so many issues
+  
+  resources :users
+
+
+  root 'users#login'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
