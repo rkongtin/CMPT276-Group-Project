@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'login/login'
+  get 'users/login'
   
-  resources :login
+  #resources :login
+  
+  resources :users  #needs to be in otherwise login->new doesn't work, I don't know why
 
 
-  root 'login#login'
+  root 'users#login'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

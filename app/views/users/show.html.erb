@@ -1,0 +1,19 @@
+<div style="background-color:white">
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>password:</strong>
+  <%= @user.password %>
+
+</div>
+ 
+<%= link_to 'Edit', edit_user_path(@user) %> <!-- | //-->
+<%= link_to 'Back', users_login_path %>

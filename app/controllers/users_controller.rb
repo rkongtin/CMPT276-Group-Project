@@ -1,13 +1,10 @@
-class LoginController < ApplicationController
-  
+class UsersController < ApplicationController
+    
   def index
     @user = User.all  
   end
   
-  def login
-    @user = User.new
-  end
-  
+
   #Different Actions
   def show
     @user = User.find(params[:id])
