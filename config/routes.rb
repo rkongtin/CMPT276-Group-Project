@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'users/login'
   
-  #resources :login
+  #resources :login #this is now useless, don't know the reason login view caused so many issues
   
-  resources :users  #needs to be in otherwise login->new doesn't work, I don't know why
+  resources :users
 
 
   root 'users#login'
