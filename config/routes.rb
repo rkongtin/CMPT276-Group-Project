@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   root 'sessions#new'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
-  get 'login' => 'sessions#create'
+  post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   get 'sessions/new'
 
-  get 'users/login'
+  get 'users/login' => 'users#login'
   
   #resources :login #this is now useless, don't know the reason login view caused so many issues
   

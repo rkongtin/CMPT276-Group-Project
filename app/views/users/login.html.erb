@@ -1,3 +1,5 @@
+<!-- this login page not in use. using login page from sessions/new -->
+
 
 <html>
     
@@ -10,10 +12,14 @@
             <br />
             <h2>Password</h2>
             <input type="password"><br />
+            
+            <%= f.submit "Log in", class: "btn btn-primary" %><br/>
          
+            <p>Dont have an account? <%= link_to "Sign up!", signup_path %></p>
         
         </div>
     
      </body>
 
 </html>
+
