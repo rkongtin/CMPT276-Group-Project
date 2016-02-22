@@ -8,6 +8,19 @@
 </head>
 <body>
   
+  <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "sample app", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   static_pages_home_path %></li>
+            <li><%= link_to "Help",   static_pages_help_path %></li>
+            <li><%= link_to "Log in", sessions_new_path %></li>
+          </ul>
+        </nav>
+      </div>
+  </header>
+
   <div class="container">
     <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
