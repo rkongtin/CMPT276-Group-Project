@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'static_pages/home' => 'static_pages#home'
   get 'static_pages/about' => 'static_pages#about'
   get 'static_pages/help' => 'static_pages#help'
-
+  get 'users/home' => 'users#home'
   root 'static_pages#home'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'sessions/new'
 
-  get 'users/login' => 'users#login'
+  get 'users/login' => 'sessions#new'
   
   #resources :login #this is now useless, don't know the reason login view caused so many issues
   
