@@ -1,0 +1,24 @@
+<html>
+
+<body>
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+
+<div id = "login_area">
+    <%= form_for(:session, url: login_path) do |f| %>
+        <%= f.label :email %><br/>
+        <%= f.email_field :email, class: 'form-control' %><br/><br/>
+        
+        <%= f.label :password %><br/>
+        <%= f.password_field :password, class: 'form-control' %><br/><br/>
+        
+        <%= f.submit "Log in", class: "btn btn-primary" %><br/>
+    <% end %>
+    
+    <p>Dont have an account? <%= link_to "Sign up!", signup_path %></p>
+    
+</div>
+</body>
+
+</html>

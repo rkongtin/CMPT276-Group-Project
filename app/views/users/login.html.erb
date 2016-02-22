@@ -1,0 +1,24 @@
+<!-- this login page not in use. using login page from sessions/new -->
+
+
+<html>
+    
+    <body>
+        <h1>Please Login to continue</h1>
+        <div id="login_area">
+            
+            <h2>Email</h2>
+            <input type="text"><br />
+            <br />
+            <h2>Password</h2>
+            <input type="password"><br />
+            
+            <%= f.submit "Log in", class: "btn btn-primary" %><br/>
+         
+            <p>Dont have an account? <%= link_to "Sign up!", signup_path %></p>
+        
+        </div>
+    
+     </body>
+
+</html>
