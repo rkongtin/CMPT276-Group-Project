@@ -22,5 +22,13 @@ module Workspace
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    #This is to fix our stuff getting divided up when errors are found (specifically, in the signup page)
+    #making stuff that should be  Password [            ]
+    #be   Password
+    #     [         ]
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+      html_tag
+    }
   end
 end
