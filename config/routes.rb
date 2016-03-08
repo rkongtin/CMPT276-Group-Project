@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'schools/index'
+
+  get 'schools/new'
+
+  get 'schools/show'
+
+  get 'schools/edit'
+
   get 'static_pages/home' => 'static_pages#home'
   get 'static_pages/about' => 'static_pages#about'
   get 'static_pages/help' => 'static_pages#help'
