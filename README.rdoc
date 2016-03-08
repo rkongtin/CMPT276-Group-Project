@@ -1,6 +1,18 @@
 == README
 
-This is our project
+To Do:
+    For the schools views.
+        Edit should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
+        possibly pretty the thing up
+        require users to log in and be admin to access the schools views (requires adding an additional thing in the users model to record if admin)
+        then we require a way to actually create admins (possibly start with 1 admin, who can create new admins who then edit their passwords)
+        
+
+Useful:
+    http://stackoverflow.com/questions/14113057/how-to-have-a-drop-down-select-field-in-a-rails-form
+    
+    https://developers.google.com/maps/documentation/geocoding/intro#GeocodingRequests
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
