@@ -1,2 +1,9 @@
-<h1>Schools#new</h1>
-<p>Find me in app/views/schools/new.html.erb</p>
+<h1>New School</h1>
+
+<p>
+    Note: You don't need to know the latitude and longitude of the school. The edit page includes a way to look it up so it can be stored. This is better because then
+    we aren't required to repeatedly ask for the location that way, we can use the latitude and longitude.
+</p>
+<%= render 'form' %>
+ 
+<%= link_to 'Back', schools_path %>

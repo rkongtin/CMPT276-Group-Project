@@ -1,3 +1,16 @@
 // Place all the styles related to the schools controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th.BorderDraw{
+    border: 1px solid black;
+    padding: 5px;
+    background-color: white;
+}
+td, th{
+    min-width: 100px;
+}
