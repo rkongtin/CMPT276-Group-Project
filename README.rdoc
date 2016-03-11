@@ -19,6 +19,8 @@ Useful:
     
     https://developers.google.com/maps/documentation/geocoding/intro#GeocodingRequests
     
+    https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-role#option-2---adding-an-admin-attribute
+    
     below is for if stuff starts breaking with pages not loading and complaining about couldn't find user with id=home or something
     http://stackoverflow.com/questions/32577058/couldnt-find-user-with-id
 
