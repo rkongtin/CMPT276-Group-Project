@@ -62,5 +62,9 @@ class SchoolsController < ApplicationController
         redirect_to sessions_new_path
       end
     end
+    #could possibly have used
+    #if current_user.admin?
+    #  # do something
+    #end
 
 end

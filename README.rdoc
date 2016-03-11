@@ -2,19 +2,25 @@
 
 To Do:
     For the schools views.
-        * Edit should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
+        * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
-        * then we require a way to actually create admins (possibly start with 1 admin, who can create new admins who then edit their passwords)
+        * then we require a way to actually create admins (see below point)
+        * users edit page (where we'll create admins)
+        * create tests for stuff
         
     Done:
         * allowing only admins to access the schools sections
         * admins have a way to access schools, through the bar up top
+        * admins able to view all users, and then go to edit them
         
 
 Useful:
     http://stackoverflow.com/questions/14113057/how-to-have-a-drop-down-select-field-in-a-rails-form
     
     https://developers.google.com/maps/documentation/geocoding/intro#GeocodingRequests
+    
+    below is for if stuff starts breaking with pages not loading and complaining about couldn't find user with id=home or something
+    http://stackoverflow.com/questions/32577058/couldnt-find-user-with-id
 
 
 This README would normally document whatever steps are necessary to get the
