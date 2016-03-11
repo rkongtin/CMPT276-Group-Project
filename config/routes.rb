@@ -7,23 +7,28 @@ Rails.application.routes.draw do
 
   get 'schools/edit'
   resources :schools  #really no idea why this specific thing is needed
+  
 
   get 'static_pages/home' => 'static_pages#home'
   get 'static_pages/about' => 'static_pages#about'
   get 'static_pages/help' => 'static_pages#help'
   get 'users/home' => 'users#home'
-  root 'static_pages#home'
+  
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   get 'sessions/new'
 
+  get 'users/index'
   get 'users/login' => 'sessions#new'
+  resources :users
+  
+  root 'static_pages#home'  #easier to find root down here
   
   #resources :login #this is now useless, don't know the reason login view caused so many issues
   
-  resources :users
+  #resources :users
 
 
   #root 'users#login'

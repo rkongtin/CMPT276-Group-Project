@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   
-  before_action :requireIsAdmin, only: [:index]
+  before_action :requireIsAdmin, only: [:index, :edit]
     
   def index
     @users = User.all  
   end
   
-
   #Different Actions
   def show
     @user = User.find(params[:id])
@@ -51,7 +50,7 @@ class UsersController < ApplicationController
         unless current_user.admin?
           redirect_to users_home_path
         end
-      rescue nil  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
+      rescue => err  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
         redirect_to sessions_new_path
       end
     end

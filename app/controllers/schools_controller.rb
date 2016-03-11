@@ -58,7 +58,7 @@ class SchoolsController < ApplicationController
         unless current_user.admin?
           redirect_to users_home_path
         end
-      rescue nil  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
+      rescue => err  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
         redirect_to sessions_new_path
       end
     end
