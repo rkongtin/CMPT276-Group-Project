@@ -6,7 +6,7 @@ To Do:
         * possibly pretty the thing up
         * allow users to change password
         * create tests for stuff
-        * fix all the random stuff showing up above on users/index
+        * fix all the random stuff showing up above on users/index  (I have no Idea what's causing this)
         * fix users/home, it's having errors with users show action
         * make makeAdmin page functional, currently not correctly saving boolean value to DB
         

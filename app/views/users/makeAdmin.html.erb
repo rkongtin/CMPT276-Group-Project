@@ -13,11 +13,17 @@
 <% end %>
         
 <%= form_for @user, :url => makeAdmin_update_user_path(@user) do |f| %>
-    <p>
-        <%= f.label :admin %>
-        <%= f.text_field :admin, :required => true, :class => 'input' %>
-    </p>
-    <p>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-    </p>
+    <div class = "field">
+        <p>
+            <%= f.label :admin %>
+            <!-- <%= f.text_field :admin, :required => true, :class => 'input' %> //-->
+            <%= f.check_box :admin %>
+        </p>
+    </div>
+    <div>
+        <%= f.submit "Submit", class: "btn btn-primary" %> 
+        <%= link_to "Back", users_path, class: "btn btn-primary" %>
+    </div>
+    <br />
+    
 <% end %>
