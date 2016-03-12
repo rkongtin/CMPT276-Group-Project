@@ -19,7 +19,7 @@ To Do:
         
 
 Useful:
-    http://stackoverflow.com/questions/14113057/how-to-have-a-drop-down-select-field-in-a-rails-form
+    http://stackoverflow.com/questions/14113057/hcleow-to-have-a-drop-down-select-field-in-a-rails-form
     
     https://developers.google.com/maps/documentation/geocoding/intro#GeocodingRequests
     
@@ -30,6 +30,8 @@ Useful:
     
     Thanks to this for helping me get checkbox for setting admins to working
     http://stackoverflow.com/questions/20379311/how-to-get-blank-checkboxes-to-pass-as-false-to-params
+    
+    http://guides.rubyonrails.org/routing.html#adding-more-restful-actions
 
 
 This README would normally document whatever steps are necessary to get the
