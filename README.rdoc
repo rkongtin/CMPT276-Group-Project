@@ -8,6 +8,8 @@ To Do:
         * users edit page (where we'll create admins), this should only have the option to change whether they're an admin or not
         * allow users to chagne password
         * create tests for stuff
+        * fix all the random stuff showing up above on users/index
+        * fix users/home, it's having errors with users show action
         
     Done:
         * allowing only admins to access the schools sections

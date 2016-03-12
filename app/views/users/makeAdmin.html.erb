@@ -1,0 +1,23 @@
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@user.errors.count, "error") %> prohibited
+            this data from being saved:
+        </h2>
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+        
+<%= form_for @user, :url => makeAdmin_update_user_path(@user) do |f| %>
+    <p>
+        <%= f.label :admin %>
+        <%= f.text_field :admin, :required => true, :class => 'input' %>
+    </p>
+    <p>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+    </p>
+<% end %>

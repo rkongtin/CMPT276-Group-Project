@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   
-  before_action :requireIsAdmin, only: [:index, :edit]
+  before_action :requireIsAdmin, only: [:index, :edit, :makeAdmin]
     
   def index
     @users = User.all  
+  end
+  
+  def makeAdmin
+    @user = User.find(params[:id])
   end
   
   #Different Actions
@@ -31,7 +35,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
   
     if @user.update(user_params)
       redirect_to @user
@@ -39,10 +43,19 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def makeAdmin_update
+    @user = User.find(params[:id])
+    if @user.update(params.require(:user).permit(:admin))
+      redirect_to @user
+    else
+      render 'makeAdmin'
+    end
+  end
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
     
     def requireIsAdmin #code to require to be admin, others get redirected back

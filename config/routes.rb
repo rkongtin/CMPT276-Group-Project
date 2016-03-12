@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  
+  resources :users do
+    member do
+      get 'makeAdmin'
+      patch "makeAdmin_update"
+    end
+  end
+  
+  
+  
   get 'schools/index'
 
   get 'schools/new'
