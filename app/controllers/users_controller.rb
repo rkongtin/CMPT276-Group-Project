@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :requireIsAdmin, only: [:index, :edit, :makeAdmin]
+  before_action :requireIsAdmin, only: [:index, :edit]
     
   def index
     @users = User.all  
