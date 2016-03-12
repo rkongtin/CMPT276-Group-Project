@@ -5,7 +5,8 @@ To Do:
         * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
         * then we require a way to actually create admins (see below point)
-        * users edit page (where we'll create admins)
+        * users edit page (where we'll create admins), this should only have the option to change whether they're an admin or not
+        * allow users to chagne password
         * create tests for stuff
         
     Done:

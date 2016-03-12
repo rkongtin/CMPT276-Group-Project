@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :requireIsAdmin, only: [:index, :edit]
+  before_action :requireIsAdmin, only: [:index, :edit, :makeAdmin]
     
   def index
     @users = User.all  
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])  
   end
-  
+
   #don't have their own view
   def create
     @user = User.new(user_params)
