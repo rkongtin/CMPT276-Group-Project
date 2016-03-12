@@ -8,13 +8,13 @@ To Do:
         * create tests for stuff
         * fix all the random stuff showing up above on users/index  (I have no Idea what's causing this)
         * fix users/home, it's having errors with users show action
-        * make makeAdmin page functional, currently not correctly saving boolean value to DB
         
     Done:
         * allowing only admins to access the schools sections
         * admins have a way to access schools, through the bar up top
         * admins able to view all users, and then go to edit them
         * users makeAdmin page (where we'll create admins), this should only have the option to change whether they're an admin or not
+        * make makeAdmin page functional, can now create admins
         
 
 Useful:
@@ -26,6 +26,9 @@ Useful:
     
     below is for if stuff starts breaking with pages not loading and complaining about couldn't find user with id=home or something
     http://stackoverflow.com/questions/32577058/couldnt-find-user-with-id
+    
+    Thanks to this for helping me get checkbox for setting admins to working
+    http://stackoverflow.com/questions/20379311/how-to-get-blank-checkboxes-to-pass-as-false-to-params
 
 
 This README would normally document whatever steps are necessary to get the

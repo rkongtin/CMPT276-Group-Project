@@ -13,11 +13,16 @@
 <% end %>
         
 <%= form_for @user, :url => makeAdmin_update_user_path(@user) do |f| %>
-    <div class = "field">
+    <div class="field">
         <p>
+            <!-- How I got this working: http://stackoverflow.com/questions/20379311/how-to-get-blank-checkboxes-to-pass-as-false-to-params //-->
+            
             <%= f.label :admin %>
             <!-- <%= f.text_field :admin, :required => true, :class => 'input' %> //-->
-            <%= f.check_box :admin %>
+            <%= hidden_field_tag :admin, false %>
+            <%= check_box_tag :admin, checked = true, unchecked = false %>
+            <!-- <%= f.check_box :admin %> //-->
+            
         </p>
     </div>
     <div>

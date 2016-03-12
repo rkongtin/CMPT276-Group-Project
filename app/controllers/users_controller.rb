@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   
   def makeAdmin_update
     @user = User.find(params[:id])
+    
     if @user.update_attribute(:admin, params[:admin])
       redirect_to @user
     else
