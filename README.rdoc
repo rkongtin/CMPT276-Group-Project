@@ -5,7 +5,6 @@ To Do:
         * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
         * create tests for stuff
-        * allow users to only be able to view their own profile page
         
     Done:
         * allowing only admins to access the schools sections
@@ -16,6 +15,7 @@ To Do:
         * fix all the random stuff showing up above on users/index  (Deleting an equals sign in the index fixed)
         * allow users to change password
         * fix users/home, it's having errors with users show actions
+        * allow users to only be able to view their own pages (let me know if they can still access pages they shouldn't)
         
 
 Useful:
@@ -32,6 +32,9 @@ Useful:
     http://stackoverflow.com/questions/20379311/how-to-get-blank-checkboxes-to-pass-as-false-to-params
     
     http://guides.rubyonrails.org/routing.html#adding-more-restful-actions
+    
+    allow users to only view their own pages
+    http://stackoverflow.com/questions/4642755/how-to-restrict-users-to-only-edit-their-records
 
 
 This README would normally document whatever steps are necessary to get the

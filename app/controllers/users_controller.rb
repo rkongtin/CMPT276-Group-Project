@@ -5,8 +5,16 @@ class UsersController < ApplicationController
   def index
     @users = User.all  
   end
-
   
+  def settings
+    @user = User.find(params[:id])
+    if current_user.id == @user.id
+      
+    else
+      redirect_to current_user  #redirect to profile page if it's not their page
+    end
+  end
+
   #Different Actions
   def show
     @user = User.find(params[:id])
@@ -26,6 +34,11 @@ class UsersController < ApplicationController
   
   def changePassword
     @user = User.find(params[:id])
+    if current_user.id == @user.id
+      
+    else
+      redirect_to current_user  #redirect to profile page if it's not their page
+    end
   end
 
   #don't have their own view
