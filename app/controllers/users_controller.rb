@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   
   def changePassword_update
     @user = User.find(params[:id])
-    if @user.update_attribute(:admin, params[:password])
+    if @user.update_attributes(params.require(:user).permit(:password, :password_confirmation))
       redirect_to @user
     else
       render 'changePassword'
