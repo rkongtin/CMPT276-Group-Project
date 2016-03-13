@@ -4,9 +4,7 @@ To Do:
     For the schools views.
         * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
-        * allow users to change password
         * create tests for stuff
-        * fix users/home, it's having errors with users show actions
         * allow users to only be able to view their own profile page
         
     Done:
@@ -16,6 +14,8 @@ To Do:
         * users makeAdmin page (where we'll create admins), this should only have the option to change whether they're an admin or not
         * make makeAdmin page functional, can now create admins
         * fix all the random stuff showing up above on users/index  (Deleting an equals sign in the index fixed)
+        * allow users to change password
+        * fix users/home, it's having errors with users show actions
         
 
 Useful:

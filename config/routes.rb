@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'changePassword'
       patch 'changePassword_update'
       get 'settings'
+      get 'home'
     end
   end
   
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   get 'users/index'
-  get 'users/home' => 'users#home'
+  #get 'users/home' => 'users#home'
   get 'users/login' => 'sessions#new'
   resources :users
   
