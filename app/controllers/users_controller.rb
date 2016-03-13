@@ -5,10 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all  
   end
-  
-  def makeAdmin
-    @user = User.find(params[:id])
-  end
+
   
   #Different Actions
   def show
@@ -22,6 +19,14 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])  
   end
+  
+  def makeAdmin
+    @user = User.find(params[:id])
+  end
+  
+  def changePassword
+    @user = User.find(params[:id])
+  end
 
   #don't have their own view
   def create
@@ -34,6 +39,8 @@ class UsersController < ApplicationController
     end
   end
   
+  
+  #all update functions below
   def update
     @user = User.find(params[:id])
   
@@ -51,6 +58,15 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'makeAdmin'
+    end
+  end
+  
+  def changePassword_update
+    @user = User.find(params[:id])
+    if @user.update_attribute(:admin, params[:password])
+      redirect_to @user
+    else
+      render 'changePassword'
     end
   end
 

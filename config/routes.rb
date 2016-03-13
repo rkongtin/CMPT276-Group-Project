@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     member do
       get 'makeAdmin'
       patch "makeAdmin_update"
+      get 'changePassword'
+      patch 'changePassword_update'
     end
   end
   
