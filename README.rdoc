@@ -5,3 +5,11 @@ This is a personal branch for testing APIs purposes
 This includes some modification for the google map
 - Multiple pins available
 - More info is available when pin is clicked
+
+Etc.
+- Sign up column has been added
+- Sign up and Login columns have small icons next to them
+- Visitors will be directed to login page
+- Website's overall color inclduing dropdown box, toggle, & etc. has been changed to the color that
+  was suggested in facebook
+- About section has been modified a little
