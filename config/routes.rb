@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       patch "makeAdmin_update"
       get 'changePassword'
       patch 'changePassword_update'
+      get 'settings'
     end
   end
   
