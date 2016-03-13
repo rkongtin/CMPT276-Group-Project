@@ -72,3 +72,43 @@ textarea {
   color: #fff;
   text-decoration: none;
 }
+
+$bgDefault      : #B52B2F;
+$bgHighlight    : #c0392b;
+$colDefault     : #ecf0f1;
+$colHover       : #ffbbbc;
+
+.navbar-inverse {
+    background-color: $bgDefault;
+    border-color: $bgHighlight;
+ /*   .navbar-brand {
+        color: $colDefault;
+        &:hover, &:focus {
+            color: $colHover; }}*/
+    .navbar-nav {
+        > li {
+            > a {
+                color: $colDefault;
+                &:hover, &:focus {
+                    color: $colHover;   }}}
+        .active {
+            > a, > a:hover, > a:focus {
+                color: $colHover;
+                background-color: $bgHighlight; }}
+        .open {
+            > a, > a:hover, > a:focus {
+                color: $colHover;
+                background-color: $bgHighlight;
+                .caret {
+                    border-top-color: $colHover;
+                    border-bottom-color: $colHover; }}}
+        > .dropdown {
+            > a {
+                .caret {
+                    border-top-color: $colDefault;
+                    border-bottom-color: $colDefault; }
+                &:hover, &:focus {
+                    .caret {
+                        border-top-color: $colHover;
+                        border-bottom-color: $colHover; }}}}}
+}

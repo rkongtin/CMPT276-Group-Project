@@ -8,7 +8,6 @@
         <% else %>
         <li><%= link_to "Home", root_path %></li>
         <% end %>
-        <li><%= link_to "Rent", users_marker_path %></li>
         <li><%= link_to "Help", static_pages_help_path %></li>
         <li><%= link_to "About", static_pages_about_path %></li>
         <% if logged_in? %>
@@ -26,7 +25,8 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+          <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <% end %>
       </ul>
     </nav>

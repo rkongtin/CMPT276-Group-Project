@@ -1,48 +1,82 @@
-<h1>Google Maps API Placeholder</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+jQuery(function($) {
+    // Asynchronously Load the map API
+    var script = document.createElement('script');
+    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+});
 
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
 
-<div id="map"></div>
-    <script>
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
 
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 14
-  });
-  var infoWindow = new google.maps.InfoWindow({map: map});
+    /* You can add multiple markers here;
+       each has 2 data: Name & Location
+    */
+    var markers = [
+        ['Simon Fraser University', 49.2789194023, -122.920480877],
+        ['Random Rental Place', 49.27914, -122.9305]
+    ];
 
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: 49.277449,
-        lng: -122.919236,
-      };
+    // Info of the marker when clicked
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>Simon Fraser University</h3>' +
+        '<p>Price: $650</p>' +        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Random Rental Place</h3>' +
+        '<p>Price: $700' +
+        '</div>']
+    ];
 
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Simon Fraser University');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+    // Loop through our array of markers & place each one on the map
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+
+        // Allow each marker to have an info window
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(14);
+        google.maps.event.removeListener(boundsListener);
     });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-}
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
 }
+</script>
+</head>
 
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAahcIejh-QwJ84mhLvqXkHFGUhmOLojZ0&signed_in=true&callback=initMap"
-        async defer>
-    </script>
+<body>
+<div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+</div>
+</body>
+</html>
