@@ -14,7 +14,6 @@
         
 <%= form_for @user, :url => changeEmail_update_user_path(@user) do |f| %>
     <div class="field">
-
         <%= f.label :email %>
         <%= f.email_field :email, :required => true, :class => 'input' %>
     </div>
