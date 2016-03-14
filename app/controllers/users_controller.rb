@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   #Different Actions
   def show
     @user = User.find(params[:id])
+
   end
   
   def new
@@ -33,6 +34,15 @@ class UsersController < ApplicationController
   end
   
   def changePassword
+    @user = User.find(params[:id])
+    if current_user.id == @user.id
+      
+    else
+      redirect_to current_user  #redirect to profile page if it's not their page
+    end
+  end
+  
+  def changeEmail
     @user = User.find(params[:id])
     if current_user.id == @user.id
       
@@ -80,6 +90,15 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'changePassword'
+    end
+  end
+  
+  def changeEmail_update
+    @user = User.find(params[:id])
+    if @user.update_attribute(:email, params[:email])
+      redirect_to @user
+    else
+      render 'changeEmail'
     end
   end
 

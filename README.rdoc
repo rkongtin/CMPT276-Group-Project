@@ -5,6 +5,8 @@ To Do:
         * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
         * create tests for stuff
+        * allow users to only be able to view their own profile page
+        * make website not bug/crash if non-logged in user tries viewing items they shouldn't
         
     Done:
         * allowing only admins to access the schools sections
