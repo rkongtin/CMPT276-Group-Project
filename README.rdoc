@@ -5,9 +5,8 @@ To Do:
         * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
         * create tests for stuff
-        * allow users to only be able to view their own profile page
-        * make website not bug/crash if non-logged in user tries viewing items they shouldn't
         * allow users to change email (currently getting some error when I try, the pages are all there though)
+        * give screen for users to see the details of newley created account
         
     Done:
         * allowing only admins to access the schools sections
@@ -19,6 +18,7 @@ To Do:
         * allow users to change password
         * fix users/home, it's having errors with users show actions
         * allow users to only be able to view their own pages (let me know if they can still access pages they shouldn't)
+        * make website not bug/crash if non-logged in user tries viewing items they shouldn't
         
 
 Useful:

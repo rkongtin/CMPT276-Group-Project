@@ -8,17 +8,13 @@ class UsersController < ApplicationController
   
   def settings
     @user = User.find(params[:id])
-    if current_user.id == @user.id
-      
-    else
-      redirect_to current_user  #redirect to profile page if it's not their page
-    end
+    authenticateUser
   end
 
   #Different Actions
   def show
     @user = User.find(params[:id])
-
+    authenticateUser
   end
   
   def new
@@ -35,20 +31,12 @@ class UsersController < ApplicationController
   
   def changePassword
     @user = User.find(params[:id])
-    if current_user.id == @user.id
-      
-    else
-      redirect_to current_user  #redirect to profile page if it's not their page
-    end
+    authenticateUser
   end
   
   def changeEmail
     @user = User.find(params[:id])
-    if current_user.id == @user.id
-      
-    else
-      redirect_to current_user  #redirect to profile page if it's not their page
-    end
+    authenticateUser
   end
 
   #don't have their own view
@@ -116,5 +104,18 @@ class UsersController < ApplicationController
         redirect_to sessions_new_path
       end
     end
+    
+    def authenticateUser #code to require that proper user is logging in
+      if logged_in?
+        if current_user.id == @user.id
+          #do nothing
+        else
+          redirect_to current_user  #redirect to profile page if it's not their page
+        end
+      else
+        redirect_to sessions_new_path #if not logged in, redirect to place to log in
+      end
+    end
+      
     
 end
