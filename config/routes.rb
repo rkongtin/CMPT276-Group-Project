@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'static_pages/home' => 'static_pages#home'
   get 'static_pages/about' => 'static_pages#about'
   get 'static_pages/help' => 'static_pages#help'
-  
+
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -43,13 +43,8 @@ Rails.application.routes.draw do
   root 'static_pages#home'  #easier to find root down here
   
   #resources :login #this is now useless, don't know the reason login view caused so many issues
-  
-  #resources :users
 
 
-  #root 'users#login'
-  
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

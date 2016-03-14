@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "House Hunting", root_path, id: "logo" %>
+    <%= link_to image_tag("icon.png"), static_pages_home_path, id: "icon" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
@@ -8,7 +8,6 @@
         <% else %>
         <li><%= link_to "Home", root_path %></li>
         <% end %>
-        
         <li><%= link_to "Help", static_pages_help_path %></li>
         <li><%= link_to "About", static_pages_about_path %></li>
         <% if logged_in? %>
@@ -30,7 +29,8 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+          <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <% end %>
       </ul>
     </nav>

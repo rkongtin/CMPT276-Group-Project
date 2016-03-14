@@ -1,4 +1,4 @@
-== README
+README
 
 To Do:
     For the schools views.
@@ -40,29 +40,18 @@ Useful:
     http://stackoverflow.com/questions/4642755/how-to-restrict-users-to-only-edit-their-records
 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+From Desired Pin, leaving incase required
+This is a personal branch for testing APIs purposes
 
-* Ruby version
+This includes some modification for the google map
+- Multiple pins available
+- More info is available when pin is clicked
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Etc.
+- Sign up column has been added
+- Sign up and Login columns have small icons next to them
+- Visitors will be directed to login page
+- Website's overall color inclduing dropdown box, toggle, & etc. has been changed to the color that
+  was suggested in facebook
+- About section has been modified a little
