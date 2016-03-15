@@ -1,23 +1,23 @@
 <html>
     <body>
+        <h1>Listing All Users [Admin's Only]</h1>
         <table>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Admin</th>
-                <th>Edit</th>
+                <th class="BorderDraw">Name</th>
+                <th class="BorderDraw">Email</th>
+                <th class="BorderDraw">Admin</th>
+                <th class="BorderDraw">Edit</th>
             </tr>
             <% @users.each do |user| %>
-                <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.admin %></td>
-                    <td><%= link_to "Edit", makeAdmin_user_path(user) %></td>
-                </tr>
-            
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.admin %></td>
+                <td><%= link_to "Edit", makeAdmin_user_path(user) %></td>
+            </tr>
             <% end %>
-            
         </table>
-        <%= link_to "Back", home_user_path(current_user) %>
+        <br />
+        <%= link_to 'Back To Home', home_user_path(current_user) %>
     </body>
 </html>
