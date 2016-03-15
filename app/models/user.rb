@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     #
     #validates :password, presence: true, length: { minimum: 6 }, confirmation: true
 
-    before_save { self.email = email.to_s.downcase.gsub(/\s+/, '') } #bug is fixed, this converts everything to string; but afterwards updated email shows blank - Yong
+    before_save { self.email = email.to_s.downcase.gsub(/\s+/, '') } #(datatype) bug is fixed, this converts everything to string; but afterwards updated email shows blank - Yong
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 255 },
