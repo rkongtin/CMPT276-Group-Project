@@ -4,9 +4,16 @@ To Do:
     For the schools views.
         * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
-        * create tests for stuff
+        * create tests for stuff(Thomas)
         * allow users to change email (currently getting some error when I try, the pages are all there though)
         * give screen for users to see the details of newley created account
+        * drop-down menu to select the schools(Charles)
+        * house database(Rudy)
+        * house information page(Charles)
+        * implement the house information in the window content(Yong)
+        * allows users to search for a transit by using Translink API(Yong)
+        * uploading images for the profile page(Yong and Rudy)
+        * refactoring code(Thomas)
         
     Done:
         * allowing only admins to access the schools sections
