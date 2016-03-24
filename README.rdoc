@@ -8,7 +8,8 @@ To Do:
         * allow users to change email (currently getting some error when I try, the pages are all there though)
         * give screen for users to see the details of newley created account
         * drop-down menu to select the schools(Charles)
-        * house database(Rudy)
+        * make the contact information be only phone number and make the input box accepts only phone number
+        * try to upload pictures for the houses by using "file.field"
         * house information page(Charles)
         * implement the house information in the window content(Yong)
         * allows users to search for a transit by using Translink API(Yong)
@@ -26,6 +27,7 @@ To Do:
         * fix users/home, it's having errors with users show actions
         * allow users to only be able to view their own pages (let me know if they can still access pages they shouldn't)
         * make website not bug/crash if non-logged in user tries viewing items they shouldn't
+        * admins have a way to access houses, through the bar up top
         
 
 Useful:
