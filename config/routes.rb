@@ -24,6 +24,18 @@ Rails.application.routes.draw do
   get 'schools/edit'
   resources :schools  #really no idea why this specific thing is needed
   
+  
+  
+  get 'houses/index'
+
+  get 'houses/new'
+
+  get 'houses/show'
+
+  get 'houses/edit'
+  resources :houses
+
+  
 
   get 'static_pages/home' => 'static_pages#home'
   get 'static_pages/about' => 'static_pages#about'

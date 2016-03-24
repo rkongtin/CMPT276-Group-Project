@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <h1>Listing All Houses [Admin's Only]</h1>
+        <%= link_to 'New House', new_house_path %>
+        <table>
+            <tr>
+                <th class="BorderDraw">Address</th>
+                <th class="BorderDraw">Price</th>
+                <th class="BorderDraw">Square Feet</th>
+                <th class="BorderDraw">Amenities</th>
+                <th class="BorderDraw">Contact Information</th>
+                <th class="BorderDraw">Pictures</th>
+                <th colspan="2" style="text-align: center;">Options</th>
+            </tr>
+            <% @houses.each do |house| %>
+            <tr>
+                <td><%= house.address %></td>
+                <td><%= house.price %></td>
+                <td><%= house.sqft %></td>
+                <td><%= house.amenities %></td>
+                <td><%= house.contact_info %></td>
+                <td><%= house.pictures %></td>
+                <td><%= link_to 'Edit', edit_house_path(house) %></td>
+                <td><%= link_to 'Destroy', house_path(house),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </table>
+        <br />
+        <%= link_to 'Back To Home', home_user_path(current_user) %>
+    </body>
+</html>

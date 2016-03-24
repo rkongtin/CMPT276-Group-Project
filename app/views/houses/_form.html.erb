@@ -1,0 +1,51 @@
+<%= form_for @house do |f| %>
+ 
+  <% if @house.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@house.errors.count, "error") %> prohibited
+        this data from being saved:
+      </h2>
+      <ul>
+        <% @house.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </p>
+ 
+  <p>
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </p>
+  
+  <p>
+    <%= f.label :sqft %><br>
+    <%= f.number_field :sqft %>
+  </p>
+  
+  <p>
+    <%= f.label :amenities %><br>
+    <%= f.text_area :amenities %>
+  </p>
+  
+  <p>
+    <%= f.label :contact_info %><br>
+    <%= f.text_field :contact_info %>
+  </p>
+  
+  <p>
+    <%= f.label :link_to_pictures %><br>
+    <%= f.text_field :pictures %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>

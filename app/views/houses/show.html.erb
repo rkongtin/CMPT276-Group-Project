@@ -1,0 +1,35 @@
+<div style="background-color:white">
+<p>
+  <strong>Address:</strong>
+  <%= @house.address %>
+</p>
+ 
+<p>
+  <strong>Price: $</strong>
+  <%= @house.price %>
+</p>
+
+<p>
+  <strong>Square Feet:</strong>
+  <%= @house.sqft %>
+</p>
+
+<p>
+  <strong>Amenities:</strong>
+  <%= @house.amenities %>
+</p>
+
+<p>
+  <strong>Contact Information:</strong>
+  <%= @house.contact_info %>
+</p>
+
+<p>
+  <strong>Link to Pictures:</strong>
+  <%= @house.pictures %>
+</p>
+
+</div>
+ 
+<%= link_to 'Edit', edit_house_path(@house) %> <!-- | //-->
+<%= link_to 'Back', houses_path %>
