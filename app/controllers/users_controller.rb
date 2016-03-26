@@ -91,6 +91,7 @@ class UsersController < ApplicationController
   end
 
   private
+  
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
@@ -105,25 +106,35 @@ class UsersController < ApplicationController
     #  end
     #end
     
-    def requireIsAdmin
+    def requireIsAdmin #code to require to be admin, otherwise redirected to home page
       if logged_in?
-        unless current_user.admin?
+        unless current_user.admin? #if not admin, redirect to their home path
           redirect_to users_home_path
         end
+      else #if not logged in, redirect to place to log in
+        redirect_to sessions_new_path
       end
     end
     
+    #def authenticateUser #code to require that proper user is logging in
+    #  if logged_in?
+    #    if current_user.id == @user.id
+    #      #do nothing
+    #    else
+    #     redirect_to current_user  #redirect to profile page if it's not their page
+    #    end
+    #  else
+    #    redirect_to sessions_new_path #if not logged in, redirect to place to log in
+    #  end
+    #end
     def authenticateUser #code to require that proper user is logging in
       if logged_in?
-        if current_user.id == @user.id
-          #do nothing
-        else
-          redirect_to current_user  #redirect to profile page if it's not their page
+        unless current_user.id == @user.id #if trying ot access page that isn't their own (example, not their own home page)
+          redirect_to current_user
         end
-      else
-        redirect_to sessions_new_path #if not logged in, redirect to place to log in
+      else #if not logged in, redirect to place to log in
+        redirect_to sessions_new_path
       end
     end
-      
     
 end
