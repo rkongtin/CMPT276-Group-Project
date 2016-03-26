@@ -95,13 +95,21 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
     
-    def requireIsAdmin #code to require to be admin, others get redirected back
-      begin
+    #def requireIsAdmin #code to require to be admin, others get redirected back
+    #  begin
+    #    unless current_user.admin?
+    #      redirect_to users_home_path
+    #    end
+    #  rescue => err  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
+    #    redirect_to sessions_new_path
+    #  end
+    #end
+    
+    def requireIsAdmin
+      if logged_in?
         unless current_user.admin?
           redirect_to users_home_path
         end
-      rescue => err  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
-        redirect_to sessions_new_path
       end
     end
     
