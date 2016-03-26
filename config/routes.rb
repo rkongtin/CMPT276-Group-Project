@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  #extra REST functions
+  #bassically lets us have one for a specifc user, so /users/ID/action
+  #instead of /users/action, which would share 1 page for all users
+  #DO NOT TOUCH the stuff in here, if you want a better explanation, please read http://guides.rubyonrails.org/routing.html and ask if still confused
   resources :users do
     member do
       get 'makeAdmin'
@@ -14,32 +18,24 @@ Rails.application.routes.draw do
   end
   
   
-  
   get 'schools/index'
-
   get 'schools/new'
-
   get 'schools/show'
-
   get 'schools/edit'
-  resources :schools  #really no idea why this specific thing is needed
-  
+  resources :schools
   
   
   get 'houses/index'
-
   get 'houses/new'
-
   get 'houses/show'
-
   get 'houses/edit'
   resources :houses
 
-  
 
   get 'static_pages/home' => 'static_pages#home'
   get 'static_pages/about' => 'static_pages#about'
   get 'static_pages/help' => 'static_pages#help'
+
 
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
@@ -47,14 +43,14 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'sessions/new'
 
+
   get 'users/index'
-  #get 'users/home' => 'users#home'
   get 'users/login' => 'sessions#new'
   resources :users
   
-  root 'static_pages#home'  #easier to find root down here
   
-  #resources :login #this is now useless, don't know the reason login view caused so many issues
+  root 'static_pages#home'  #default page of website (keep at bottom please)
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.
