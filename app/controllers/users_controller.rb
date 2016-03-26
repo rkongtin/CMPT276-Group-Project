@@ -1,23 +1,30 @@
 class UsersController < ApplicationController
   
+  #for below, please see the specific methods to see where redirections go
+  
+  #pages here require user to be admin to access
   before_action :requireIsAdmin, only: [:index, :edit, :makeAdmin]
+  
+  #authenticate the correct user for these pages
+  #also, it will call @user = User.find(params[:id]), so @user is the variable for the user whose page that is
+  before_action :authenticateUser, only: [:settings, :show, :changePassword, :changeEmail]
     
+  
+  ########################################
+  # Different Actions (pages with views) #
+  ########################################
+  
   def index
     @users = User.all  
   end
   
-  def settings
-    @user = User.find(params[:id])
-    authenticateUser
-  end
-
-  #Different Actions
-  def show
-    @user = User.find(params[:id])
-    authenticateUser
+  def settings #the settings page, can find links to change password and email here
   end
   
-  def new
+  def show #this is the used as the profile info page, used to show email and name right now
+  end
+  
+  def new #create new user
     @user = User.new
   end
   
@@ -29,17 +36,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  def changePassword
-    @user = User.find(params[:id])
-    authenticateUser
+  def changePassword #page to change password
   end
   
-  def changeEmail
-    @user = User.find(params[:id])
-    authenticateUser
+  def changeEmail #page to change email
   end
-
-  #don't have their own view
+  
+  ##############################
+  # all pages without own view #
+  ##############################
+  
   def create
     @user = User.new(user_params)
   
@@ -50,9 +56,7 @@ class UsersController < ApplicationController
     end
   end
   
-  
-  #all update functions below
-  def update
+  def update #this would be used with a regular update page, not currently in use and it updates everything then
     @user = User.find(params[:id])
   
     if @user.update(user_params)
@@ -62,7 +66,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def makeAdmin_update
+  def makeAdmin_update #update function to change admin field (only changes admin val)
     @user = User.find(params[:id])
     
     if @user.update_attribute(:admin, params[:admin])
@@ -72,10 +76,10 @@ class UsersController < ApplicationController
     end
   end
   
-  def changePassword_update
+  def changePassword_update #update function for changing password (only changes password)
     @user = User.find(params[:id])
-    if @user.update_attributes(params.require(:user).permit(:password, :password_confirmation))
-      redirect_to @user
+    if @user.update_attributes(params.require(:user).permit(:password, :password_confirmation)) #confirm :password and :password_confirmation are same, then update the :password_digest field to hashed val
+      redirect_to @user #redirect to profile page after (the show page)
     else
       render 'changePassword'
     end
@@ -90,21 +94,14 @@ class UsersController < ApplicationController
     end
   end
 
+  #######################################################
+  # private functions, not controller actions for pages #
+  #######################################################
   private
   
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
-    
-    #def requireIsAdmin #code to require to be admin, others get redirected back
-    #  begin
-    #    unless current_user.admin?
-    #      redirect_to users_home_path
-    #    end
-    #  rescue => err  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
-    #    redirect_to sessions_new_path
-    #  end
-    #end
     
     def requireIsAdmin #code to require to be admin, otherwise redirected to home page
       if logged_in?
@@ -115,21 +112,11 @@ class UsersController < ApplicationController
         redirect_to sessions_new_path
       end
     end
-    
-    #def authenticateUser #code to require that proper user is logging in
-    #  if logged_in?
-    #    if current_user.id == @user.id
-    #      #do nothing
-    #    else
-    #     redirect_to current_user  #redirect to profile page if it's not their page
-    #    end
-    #  else
-    #    redirect_to sessions_new_path #if not logged in, redirect to place to log in
-    #  end
-    #end
+
     def authenticateUser #code to require that proper user is logging in
       if logged_in?
-        unless current_user.id == @user.id #if trying ot access page that isn't their own (example, not their own home page)
+        @user = User.find(params[:id]) #find who's page this is (by their id)
+        unless current_user.id == @user.id #if trying to access page that isn't their own (example, not their own home page)
           redirect_to current_user
         end
       else #if not logged in, redirect to place to log in
