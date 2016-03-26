@@ -15,6 +15,7 @@ To Do:
         * allows users to search for a transit by using Translink API(Yong)
         * uploading images for the profile page(Yong and Rudy)
         * refactoring code(Thomas)
+        * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
         
     Done:
         * allowing only admins to access the schools sections
