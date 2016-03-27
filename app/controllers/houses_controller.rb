@@ -1,8 +1,14 @@
 class HousesController < ApplicationController
   
-  before_filter :requireIsAdmin #require them to be admin to view these pages, otherwise redirect them. Code is run right away
+  #code mostly copied from schools_controller
+  
+  before_filter :requireIsAdmin #run method requireIsAdmin before allowing them to view pages (checks if admin, if not it redirects them)
   #see   http://stackoverflow.com/questions/5056451/redirect-to-login-page-if-user-not-logged-in
 
+  ########################################
+  # Different Actions (pages with views) #
+  ########################################
+  
   def index
     @houses = House.all
   end
@@ -19,6 +25,10 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
   end
   
+  ##############################
+  # all pages without own view #
+  ##############################
+
   def create
     @house = House.new(house_params)
   
@@ -46,25 +56,24 @@ class HousesController < ApplicationController
     redirect_to houses_path
   end
 
+  #######################################################
+  # private functions, not controller actions for pages #
+  #######################################################
+  
   private
     def house_params
       params.require(:house).permit(:address, :price, :sqft, :amenities, :contact_info, :pictures)
     end
 
 
-
-    def requireIsAdmin #code to require to be admin, others get redirected back
-      begin
-        unless current_user.admin?
+    def requireIsAdmin #code to require to be admin, otherwise redirected to home page
+      if logged_in?
+        unless current_user.admin? #if not admin, redirect to their home path
           redirect_to users_home_path
         end
-      rescue => err  #this will run if user isn't logged in, so current_user.admin? fails, just redirect them to login
+      else #if not logged in, redirect to place to log in
         redirect_to sessions_new_path
       end
     end
-    #could possibly have used
-    #if current_user.admin?
-    #  # do something
-    #end
 
 end
