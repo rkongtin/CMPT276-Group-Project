@@ -14,7 +14,6 @@ To Do:
         * implement the house information in the window content(Yong)
         * allows users to search for a transit by using Translink API(Yong)
         * uploading images for the profile page(Yong and Rudy)
-        * refactoring code(Thomas)
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
         * deletion of user accounts
         * figure out how we're getting lat and long of schools
@@ -32,6 +31,7 @@ To Do:
         * allow users to only be able to view their own pages (let me know if they can still access pages they shouldn't)
         * make website not bug/crash if non-logged in user tries viewing items they shouldn't
         * admins have a way to access houses, through the bar up top
+        * refactoring code(Thomas) (I believe this is all done, except for commenting of users/home which I can't do myself)
         
 
 Useful:
