@@ -1,24 +1,24 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to image_tag("icon.png"), static_pages_home_path, id: "icon" %>
+    <%= link_to image_tag("icon.png"), static_pages_home_path, id: "icon" %><!-- display icon //-->
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
-        <li><%= link_to "Home", home_user_path(current_user) %></li>
+      <ul class="nav navbar-nav navbar-right"> <!-- this tag is meant to hold a bunch of navigation links (which it's doing) //-->
+        <% if logged_in? %> <!-- if logged in, home links to users home path, if not, it links to static_pages/home  //-->
+          <li><%= link_to "Home", home_user_path(current_user) %></li>
         <% else %>
-        <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Home", root_path %></li>
         <% end %>
         <li><%= link_to "Help", static_pages_help_path %></li>
         <li><%= link_to "About", static_pages_about_path %></li>
-        <% if logged_in? %>
+        <% if logged_in? %> <!-- dropdown menu only gets displayed if user is logged in //-->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu"><!-- the data that gets displayed in the drop down menu //-->
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", settings_user_path(current_user) %></li>
-              <% if current_user.admin? %>
+              <% if current_user.admin? %> <!-- only display below links if the user is an admin //-->
                 <li><%= link_to "Schools", schools_path %></li>
                 <li><%= link_to "Houses", houses_path %></li>
                 <li><%= link_to "Users List", users_path %></li>
@@ -28,8 +28,8 @@
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
             </ul>
-          </li>
-        <% else %>
+          </li> <!-- end of drop down list //-->
+        <% else %> <!-- below info only gets displayed if user isn't logged in //-->
           <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <% end %>
