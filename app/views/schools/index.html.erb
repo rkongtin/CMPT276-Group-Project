@@ -8,7 +8,7 @@
                 <th class="BorderDraw">Address</th>
                 <th class="BorderDraw">Latitude</th>
                 <th class="BorderDraw">Longitude</th>
-                <th colspan="2" style="text-align: center;">Options</th>
+                <th colspan="2" style="text-align: center;">Options</th><!-- in the table, have options display in the middle of a 2-column length column //-->
             </tr>
             <% @schools.each do |school| %>
             <tr>
@@ -19,7 +19,7 @@
                 <td><%= link_to 'Edit', edit_school_path(school) %></td>
                 <td><%= link_to 'Destroy', school_path(school),
                     method: :delete,
-                    data: { confirm: 'Are you sure?' } %></td>
+                    data: { confirm: 'Are you sure?' } %></td> <!-- allow deletion of school, and put confirmation on it //-->
             </tr>
             <% end %>
         </table>

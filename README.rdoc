@@ -16,6 +16,8 @@ To Do:
         * uploading images for the profile page(Yong and Rudy)
         * refactoring code(Thomas)
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
+        * deletion of user accounts
+        * figure out how we're getting lat and long of schools
         
     Done:
         * allowing only admins to access the schools sections

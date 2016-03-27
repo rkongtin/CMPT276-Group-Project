@@ -45,7 +45,6 @@ Rails.application.routes.draw do
 
 
   get 'users/index'
-  get 'users/login' => 'sessions#new'
   resources :users
   
   
