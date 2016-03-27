@@ -2,43 +2,8 @@
     
     <body>
         <h1>Sign up</h1>
-        
-        <% if @user.errors.any? %>
-        <div id="error_explanation">
-            <h2>
-                <%= pluralize(@user.errors.count, "error") %> prohibited
-                this data from being saved:
-            </h2>
-            <ul>
-                <% @user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-        <% end %>
-        
         <div id="signup_area">
-            <%= form_for @user do |f| %>
-                <p>
-                    <%= f.label :name %>
-                    <%= f.text_field :name, :required => true, :class => 'input' %>
-                </p>
-                <p>
-                    <%= f.label :email %>
-                    <%= f.email_field :email, :required => true, :class => 'input' %>
-                </p>
-                <p>
-                    <%= f.label :password %>
-                    <%= f.password_field :password, :required => true, :minlength => '6', :class => 'input' %>
-                </p>
-                <p>
-                    <%= f.label :password_confirmation, "Confirm Password" %>
-                    <%= f.password_field :password_confirmation, :required => true, :minlength => '6', :class => 'input' %>
-                </p>
-                <p>
-                    <%= f.submit "Create my account", class: "btn btn-primary" %>
-                </p>
-            <% end %>
+            <%= render 'form' %> <!-- render the stuff(HTML code) in _form.html.erb //-->
         </div>
      </body>
 </html>
