@@ -1,19 +1,19 @@
 <html>
     <body>
         <h1>Listing All Users [Admin's Only]</h1>
-        <table>
+        <table> <!-- create a table with the top row saying "Name     Email      Admin      Make Admin", and other rows having each users info or a link to make admin //-->
             <tr>
                 <th class="BorderDraw">Name</th>
                 <th class="BorderDraw">Email</th>
                 <th class="BorderDraw">Admin</th>
-                <th class="BorderDraw">Edit</th>
+                <th class="BorderDraw">Make Admin</th>
             </tr>
             <% @users.each do |user| %>
             <tr>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
                 <td><%= user.admin %></td>
-                <td><%= link_to "Edit", makeAdmin_user_path(user) %></td>
+                <td><%= link_to "Make Admin", makeAdmin_user_path(user) %></td> <!-- link to each users makeAdmin page (admins access only) //-->
             </tr>
             <% end %>
         </table>
