@@ -16,7 +16,6 @@ To Do:
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
         * deletion of user accounts
         * figure out how we're getting lat and long of schools
-        * validation on schools model
         
     Done:
         * allowing only admins to access the schools sections
