@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   get 'sessions/new'
+  resources :sessions
 
 
   get 'users/index'

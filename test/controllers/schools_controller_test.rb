@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class SchoolsControllerTest < ActionController::TestCase
+  
+  def setup
+    @user = users(:testAdmin)
+  end
+  
   #test "should get index" do
   #  get :index
   #  assert_response :success

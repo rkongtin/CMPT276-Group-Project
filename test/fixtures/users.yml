@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+#rake test:prepare if needed
+
 Test:
   name: Test name
   email: test@example.com
   password_digest: <%= User.digest('123456') %>
+  
+testAdmin:
+  name: 'admin'
+  email: 'admin@sfu.ca'
+  password_digest: <%= User.digest('testing') %>
+  admin: true
 
 two:
   name: 
