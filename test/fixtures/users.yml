@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+
+
 #rake test:prepare if needed
 
-Test:
+#DO NOT USE test@sfu.ca FOR ANYTHING, IT WILL BREAK MY OTHER TESTS!!!
+
+
+Test: #not mine, but left in not to break stuff
   name: Test name
   email: test@example.com
-  password_digest: <%= User.digest('123456') %>
+  password_digest: <%= User.digest('testing') %>
+  
+test:
+  name: test
+  email: tester@sfu.ca
+  password_digest: <%= User.digest('testing') %>
   
 testAdmin:
   name: 'admin'
