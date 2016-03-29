@@ -32,7 +32,10 @@ To Do:
         * make website not bug/crash if non-logged in user tries viewing items they shouldn't
         * admins have a way to access houses, through the bar up top
         * refactoring code(Thomas) (I believe this is all done, except for commenting of users/home which I can't do myself)
+ 
         
+Notes:
+    * Test names are designed to be self-explanatory, and are written in camel case. This allows for less commenting needed to be done.
 
 Useful:
     http://stackoverflow.com/questions/14113057/hcleow-to-have-a-drop-down-select-field-in-a-rails-form
