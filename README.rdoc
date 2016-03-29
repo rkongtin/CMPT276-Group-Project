@@ -2,7 +2,6 @@ README
 
 To Do:
     For the schools views.
-        * Edit schools should have a way to look up the latitude and longitude of the address. I'm not sure if we'll need them
         * possibly pretty the thing up
         * create tests for stuff(Thomas)
         * allow users to change email (currently getting some error when I try, the pages are all there though)
@@ -17,7 +16,7 @@ To Do:
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
         * deletion of user accounts
         * figure out how we're getting lat and long of schools
-        * edit schools model to do some error checking (stuff like making sure lat and long must be decimals/doubles)
+        * validation on schools model
         
     Done:
         * allowing only admins to access the schools sections
@@ -32,10 +31,12 @@ To Do:
         * make website not bug/crash if non-logged in user tries viewing items they shouldn't
         * admins have a way to access houses, through the bar up top
         * refactoring code(Thomas) (I believe this is all done, except for commenting of users/home which I can't do myself)
+        * edit schools model to do some error checking (just some basic validations, don't know that other validations are needed)
  
         
 Notes:
     * Test names are designed to be self-explanatory, and are written in camel case. This allows for less commenting needed to be done.
+    * Tests for the house model will be finalised and finished once I know what needs testing (what can be blank, what needs to be their, what's considered invalid)
 
 Useful:
     http://stackoverflow.com/questions/14113057/hcleow-to-have-a-drop-down-select-field-in-a-rails-form
