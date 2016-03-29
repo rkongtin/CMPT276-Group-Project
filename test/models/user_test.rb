@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
   # end
   
   #Names of tests were designed to be self-explanatory
+  #assert_not user.save, assertions must always be true, assert_nots must be false, so if user.save returns false (it didn't save), assert_not will be correct
   
   test "nameNotNil" do
     user = User.new(:email => 'test@sfu.ca', :password => 'password', :password_confirmation => 'password')
