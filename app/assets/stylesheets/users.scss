@@ -10,7 +10,7 @@ a#logo:hover {
     text-decoration: none;
 }
 
-div#signup_area {
+div#signup_area, .drop-down {
     text-align: center;
 }
 
@@ -18,4 +18,12 @@ div#signup_area {
     width: 200px;
     height: 30px;
     margin: 10px;
+}
+
+h1.drop-down {
+    margin-top: 150px;
+}
+
+div.drop-down {
+    font-size: 30px;
 }
