@@ -54,6 +54,9 @@ Useful:
     
     allow users to only view their own pages
     http://stackoverflow.com/questions/4642755/how-to-restrict-users-to-only-edit-their-records
+    
+    capybara cheat sheet
+    https://gist.github.com/zhengjia/428105
 
 
 
