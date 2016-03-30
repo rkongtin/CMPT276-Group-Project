@@ -27,3 +27,14 @@ h1.drop-down {
 div.drop-down {
     font-size: 30px;
 }
+
+a.drop-down {
+    border: 1px solid black;
+    background-color: #B12E34;
+    color: white;
+}
+
+a.drop-down:hover {
+    color: #ffbbbc;
+    text-decoration: none;
+}

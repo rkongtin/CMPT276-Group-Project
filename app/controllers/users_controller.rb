@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   #authenticate the correct user for these pages
   #also, it will call @user = User.find(params[:id]), so @user is the variable for the user whose page that is
-  before_action :authenticateUser, only: [:settings, :show, :changePassword, :changeEmail, :home]
+  before_action :authenticateUser, only: [:settings, :show, :changePassword, :changeEmail, :home, :map]
     
   
   ########################################

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       patch 'changeEmail_update'
       get 'settings'
       get 'home'
+      get 'map'
     end
   end
   
