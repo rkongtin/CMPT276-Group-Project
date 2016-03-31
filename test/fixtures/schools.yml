@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyString
-  lat: 
-  long: 
+  name: testSchool
+  address: 1111
+  lat: 17
+  long: 23
 
 two:
   name: MyString
   address: MyString
-  lat: 
-  long: 
+  lat: 0
+  long: 0

@@ -11,6 +11,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @admin = users(:testAdmin)
     @user = users(:test)
     @pass = "testing" #universal password for ease of use
+    @school = schools(:one)
   end
   
   test "login" do
@@ -103,6 +104,42 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     #log in to admin to test now
     login(:testAdmin)#email shouldn't have been changed
     assert_equal home_user_path(@admin), path
+  end
+  
+  ###########################################################################
+  # do the tests to make sure users/not logged in can't access school pages # #admins can, this only tests normal users (I'm merging logged in/out so I write less also)
+  ###########################################################################
+  
+  test "noAccessSchoolsIndex" do
+    get_via_redirect schools_path
+    assert_equal sessions_new_path, path
+    login(:test)
+    get_via_redirect schools_path
+    assert_equal user_path(@user), path
+  end
+  
+  test "noAccessSchoolsNew" do
+    get_via_redirect schools_new_path
+    assert_equal sessions_new_path, path
+    login(:test)
+    get_via_redirect schools_new_path
+    assert_equal user_path(@user), path
+  end
+  
+  test "noAccessSchoolsEdit" do
+    get_via_redirect schools_edit_path(@school)
+    assert_equal sessions_new_path, path
+    login(:test)
+    get_via_redirect schools_edit_path(@school)
+    assert_equal user_path(@user), path
+  end
+  
+  test "noAccessSchoolsShow" do
+    get_via_redirect school_path(@school)
+    assert_equal sessions_new_path, path
+    login(:test)
+    get_via_redirect school_path(@school)
+    assert_equal user_path(@user), path
   end
   
   #########################################################################
