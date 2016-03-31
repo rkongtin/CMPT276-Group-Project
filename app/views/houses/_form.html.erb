@@ -1,5 +1,5 @@
 <%= form_for @house, :html => { :multipart => true } do |f| %>
- 
+ <!-- if any errors, display them here //-->
   <% if @house.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -41,7 +41,7 @@
   
   <p>
     <%= f.label :pictures %><br>
-    <%= f.file_field :pictures %>
+    <%= f.file_field :pictures %> <!-- button to upload pictures //-->
   </p>
   
   <p>

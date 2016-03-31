@@ -6,7 +6,7 @@
  
 <p>
   <strong>Address:</strong>
-  <%= @school.address %>kg
+  <%= @school.address %>
 </p>
 
 <p>
@@ -21,7 +21,7 @@
 
 </div>
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@school.lat}%2C#{@school.long}" %>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@school.lat}%2C#{@school.long}" %> <!-- show the location of the school on a map //-->
 <br /><br />
 
 <%= link_to 'Edit', edit_school_path(@school) %>

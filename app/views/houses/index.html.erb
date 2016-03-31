@@ -10,7 +10,7 @@
                 <th class="BorderDraw">Amenities</th>
                 <th class="BorderDraw">Contact Information</th>
                 <th class="BorderDraw">Pictures</th>
-                <th colspan="3" style="text-align: center;">Options</th>
+                <th colspan="3" style="text-align: center;">Options</th> <!-- in the table, have options display in the middle of a 3-column length column //-->
             </tr>
             <% @houses.each do |house| %>
             <tr>
@@ -24,7 +24,7 @@
                 <td><%= link_to 'Edit', edit_house_path(house) %></td>
                 <td><%= link_to 'Destroy', house_path(house),
                     method: :delete,
-                    data: { confirm: 'Are you sure?' } %></td>
+                    data: { confirm: 'Are you sure?' } %></td> <!-- allow deletion of house, and put confirmation on it //-->
             </tr>
             <% end %>
         </table>
