@@ -51,11 +51,50 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal login_path, path #assert we're still having to login
   end
   
-  test "noAccessToOtherHome" do
+  ##################################################################
+  # do the tests to make sure users can't access others user pages #
+  ##################################################################
+  test "noAccessOtherHome" do
     login(:test)
-    #try accessing someone elses home
     get_via_redirect home_user_path(@admin)
-    assert_equal user_path(@user), path #should be redirected to their profile
+    assert_equal user_path(@user), path
+  end
+  test "noAccessOtherProfile" do
+    login(:test)
+    #test access to users profile page (show)
+    get_via_redirect users_path(@admin)
+    assert_equal user_path(@user), path
+  end
+  test "noAccessNotAdminUsersIndex" do
+    login(:test)
+    get_via_redirect users_path
+    assert_equal user_path(@user), path
+  end
+  test "noAccessOtherSettings" do
+    login(:test)
+    get_via_redirect settings_user_path(@admin)
+    assert_equal user_path(@user), path
+  end
+  test "noAccessOtherChangePass" do
+    login(:test)
+    #test access to password change page
+    get_via_redirect changePassword_user_path(@admin)
+    assert_equal user_path(@user), path
+  end
+  test "noAccessOtherChangeEmail" do
+    login(:test)
+    get_via_redirect changeEmail_user_path(@admin)
+    assert_equal user_path(@user), path
+  end
+  test "noAccessOtherMakeAdmin" do
+    login(:test)
+    get_via_redirect makeAdmin_user_path(@admin)
+    assert_equal user_path(@user), path
+  end
+  test "noAccessOtherEdit" do
+    login(:test)
+    get_via_redirect edit_user_path(@admin)
+    assert_equal user_path(@user), path
   end
   
   #########################################################################
@@ -96,6 +135,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal sessions_new_path, path
   end
   
+  #########################################################################
+  # do the tests to make sure non-logged in users can't update user pages #
+  #########################################################################
+  
   test "notLogInMakeAdminUpdate" do #do the tests to make sure non-logged can't update users
     patch_via_redirect makeAdmin_update_user_path(@admin), admin: false
     assert_equal sessions_new_path, path
@@ -115,10 +158,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal home_user_path(@admin), path
   end
   
+  
   ###################
   # Private Methods #
   ###################
-  
   private
   
     def login(user) #private method to login to some user
