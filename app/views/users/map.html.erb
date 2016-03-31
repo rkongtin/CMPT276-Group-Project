@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <script>
+
+// Asynchronously Load the map API (Or simply google API used for this file)
 jQuery(function($) {
-    // Asynchronously Load the map API
     var script = document.createElement('script');
     script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
     document.body.appendChild(script);
 });
 
 function initialize() {
-    var map;
+    var map;    //map variable that will be used to display the map
     var bounds = new google.maps.LatLngBounds();
+    /*A variable with location info. (contains lat. and long. info.)
+      using lat. and long. as input*/
+    var sfu = new google.maps.LatLng(49.2789194023, -122.920480877);
+    /*A variable for options of the map:
+      in this case, center of the map & zoom option are included with the type of the map we use */
     var mapOptions = {
-        mapTypeId: 'roadmap'
+        center:sfu,    //Center of the map that we are going to see; using the variable, sfu, we previously assigned.
+        zoom:14,        //Zoom
+        mapTypeId:google.maps.MapTypeId.ROADMAP  //Type of the map
+      //  mapTypeId: 'roadmap' //original
     };
 
-    // Display a map on the page
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-    map.setTilt(45);
+//added feature
 
-    /* You can add multiple markers here;
-       each has 2 data: Name & Location
+
+
+    // Display a map on the page
+    // map vairable now has mapOptions properties
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+    /*This is a variable that helps to show the range of a certain region
+      (a blue circle on the map in our case)
+    */
+    var myCity = new google.maps.Circle({
+        center:sfu,             //Center of the circle using variable sfu as we indicated above
+        radius:5000,            //Radius of the circle
+        strokeColor:"#0000FF",  //Color of the border of the circle
+        strokeOpacity:0.8,      //opacity of the border
+        strokeWeight:2,         //you know
+        fillColor:"#0000FF",    //Color of the circle
+        fillOpacity:0.4         //you know
+     });  //
+
+    myCity.setMap(map); // Display the circle on the map
+    /*
+       var markers: A variable for markers(pins).
+       You can add multiple markers here;
+       each array has 2 data: Name of the marker & lat and long for markers to be indicated
     */
     var markers = [
         ['Simon Fraser University', 49.2789194023, -122.920480877],
@@ -31,32 +61,39 @@ function initialize() {
     // Info of the marker when clicked
     var infoWindowContent = [
         ['<div class="info_content">' +
-        '<h3>Simon Fraser University</h3>' +
-        '<p>Price: $650</p>' +        '</div>'],
+        '<h3>Simon Fraser University</h3>' +      //(1) Simply the header of the info of the marker(pin)
+        '<p>Price: $650</p>' +        '</div>'],  //(2) Contents of the marker goes here
         ['<div class="info_content">' +
-        '<h3>Random Rental Place</h3>' +
-        '<p>Price: $700' +
+        '<h3>Random Rental Place</h3>' +          //Same as (1)
+        '<p>Price: $700' +                        //Same as (2)
         '</div>']
     ];
 
-    // Display multiple markers on a map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
-
-    // Loop through our array of markers & place each one on the map
-    for( i = 0; i < markers.length; i++ ) {
+    /*
+      From here, for loop will help us to display multiple markers on the map
+      Generally, it will loop through our array of markers & place each one on the map
+    */
+    for( i = 0; i < markers.length; i++ ) {           //# of looping = # of markers
+        /*
+          Access to lat and long info from marker variable that we previously made
+          and those info will be placed in var position during iteration
+        */
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         bounds.extend(position);
         marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: markers[i][0]
+            position: position,      //This is going to be the position of the marker using var position above
+            map: map,                //apply map properties
+            title: markers[i][0]     //title for the marker
         });
 
         // Allow each marker to have an info window
+        /*
+          Simply, this function is saying that when 'marker' is 'clicked' let the function(marker, i) begin
+        */
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                infoWindow.setContent(infoWindowContent[i][0]);
-                infoWindow.open(map, marker);
+                infoWindow.setContent(infoWindowContent[i][0]);    //Contents are now stored in the marker
+                infoWindow.open(map, marker);                      //Now let it display on the map (Need this function in order to display the info when clicked)
             }
         })(marker, i));
 
@@ -64,7 +101,7 @@ function initialize() {
         map.fitBounds(bounds);
     }
 
-    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    // Override our map zoom level once our fitBounds function runs (better view of the map by zooming)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
         this.setZoom(14);
         google.maps.event.removeListener(boundsListener);
