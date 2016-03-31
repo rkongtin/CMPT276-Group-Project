@@ -3,7 +3,6 @@ README
 To Do:
     For the schools views.
         * possibly pretty the thing up
-        * create tests for stuff(Thomas)
         * allow users to change email (currently getting some error when I try, the pages are all there though)
         * make the contact information be only phone number and make the input box accepts only phone number
         * try to upload pictures for the houses by using "file.field"
@@ -32,6 +31,7 @@ To Do:
         * drop-down menu to select the schools(Rudy)
         * figure out how we're getting lat and long of schools (provide link to external site to look it up)
         * give screen for users to see the details of newley created account (just auto-sign them in after signing up)
+        * create tests for stuff(Thomas)
  
         
 Notes:
