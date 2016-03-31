@@ -69,6 +69,9 @@ function initialize() {
         '</div>']
     ];
 
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+  
     /*
       From here, for loop will help us to display multiple markers on the map
       Generally, it will loop through our array of markers & place each one on the map
