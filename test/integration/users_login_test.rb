@@ -13,25 +13,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @pass = "testing" #universal password for ease of use
   end
   
-  #test "login with invalid information" do
-    #get login_path
-    #post login_path, session: { email: @user.email, password: '123456' }
-    #assert is_logged_in?
-    #assert_redirected_to @user
-    #follow_redirect!
-    #assert_template 'users/show'
-    #assert_select "a[href=?]", login_path, count: 0
-    #assert_select "a[href=?]", logout_path
-    #assert_select "a[href=?]", user_path(@user)
-    #delete logout_path
-    #assert_not is_logged_in?
-    #assert_redirected_to root_url
-    #follow_redirect!
-    #assert_select "a[href=?]", login_path
-    #assert_select "a[href=?]", logout_path,      count: 0
-    #assert_select "a[href=?]", user_path(@user), count: 0
-  #end
-  
   test "login" do
     get '/login'
     assert_response :success
@@ -52,7 +33,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
   
   ##################################################################
-  # do the tests to make sure users can't access others user pages #
+  # do the tests to make sure users can't access others user pages # #note, this also has the benifit of testing that non-admins can't access admin pages :)
   ##################################################################
   test "noAccessOtherHome" do
     login(:test)
@@ -95,6 +76,33 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     login(:test)
     get_via_redirect edit_user_path(@admin)
     assert_equal user_path(@user), path
+  end
+  
+  #############################################################
+  # do the tests to make sure users can't access update users #
+  #############################################################
+  
+  test "noAccessOtherMakeAdminUpdate" do
+    login(:test)
+    patch_via_redirect makeAdmin_update_user_path(@admin), admin: false
+    assert_equal user_path(@user), path
+    assert @admin.admin == true
+  end
+  test "noAccessOtherChangePasswordUpdate" do
+    login(:test)
+    patch_via_redirect changePassword_update_user_path(@admin), user: {password: "123456", password_digest: "123456"}
+    assert_equal user_path(@user), path
+    #log in to admin to test now
+    login(:testAdmin)#password shouldn't have been changed
+    assert_equal home_user_path(@admin), path
+  end
+  test "noAccessOtherChangeEmailUpdate" do
+    login(:test)
+    patch_via_redirect changeEmail_update_user_path(@admin), email: "NOMORE@sfu.ca"
+    assert_equal user_path(@user), path
+    #log in to admin to test now
+    login(:testAdmin)#email shouldn't have been changed
+    assert_equal home_user_path(@admin), path
   end
   
   #########################################################################
@@ -142,7 +150,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "notLogInMakeAdminUpdate" do #do the tests to make sure non-logged can't update users
     patch_via_redirect makeAdmin_update_user_path(@admin), admin: false
     assert_equal sessions_new_path, path
-    #login(:admin)#password shouldn't have been changed
     assert @admin.admin == true
   end
   test "notLogInChangePasswordUpdate" do #do the tests to make sure non-logged can't update users
