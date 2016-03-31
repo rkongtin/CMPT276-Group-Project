@@ -66,7 +66,7 @@ class SchoolsController < ApplicationController
     def requireIsAdmin #code to require to be admin, otherwise redirected to home page
       if logged_in?
         unless current_user.admin? #if not admin, redirect to their home path
-          redirect_to users_home_path
+          redirect_to current_user
         end
       else #if not logged in, redirect to place to log in
         redirect_to sessions_new_path
