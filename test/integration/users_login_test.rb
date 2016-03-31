@@ -58,6 +58,39 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal user_path(@user), path #should be redirected to their profile
   end
   
+  test "noAccessToUserPagesWhileNotLoggedIn" do #do the tests to make sure non-logged in users can't access user pages
+    #test access to home page
+    get_via_redirect home_user_path(@admin)
+    assert_equal sessions_new_path, path
+    #test access to users profile page (show)
+    get_via_redirect users_path(@admin)
+    assert_equal sessions_new_path, path
+    #test access to users index (should have to be admin)
+    get_via_redirect users_path
+    assert_equal sessions_new_path, path
+    #test access to users settings
+    get_via_redirect settings_user_path(@admin)
+    assert_equal sessions_new_path, path
+    #test access to password change page
+    get_via_redirect changePassword_user_path(@admin)
+    assert_equal sessions_new_path, path
+    #test access to change email page
+    get_via_redirect changeEmail_user_path(@admin)
+    assert_equal sessions_new_path, path
+    #test access to makeAdmin page
+    get_via_redirect makeAdmin_user_path(@admin)
+    assert_equal sessions_new_path, path
+    #test access to edit page
+    get_via_redirect edit_user_path(@admin)
+    assert_equal sessions_new_path, path
+  end
+  
+  test "noAccessUpdateNotLogIn" do #do the tests to make sure non-logged in users can't access user pages
+    patch_via_redirect makeAdmin_update_user_path(@admin), admin: false
+    assert_equal sessions_new_path, path
+    #login(:admin)#password shouldn't have been changed
+    assert @admin.admin == true
+  end
   
   ###################
   # Private Methods #
