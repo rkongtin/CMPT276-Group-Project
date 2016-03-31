@@ -26,6 +26,8 @@ gem 'bootstrap-sass', '3.2.0.0'
 
 gem 'bcrypt'
 
+gem 'paperclip', '~> 4.3', '>= 4.3.2'
+
 #gem 'arel'#, '6.0.0.beta2'
 
 # Use ActiveModel has_secure_password

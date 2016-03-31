@@ -9,7 +9,6 @@ To Do:
         * house information page(Charles)
         * implement the house information in the window content(Yong)
         * allows users to search for a transit by using Translink API(Yong)
-        * uploading images for the profile page(Yong and Rudy)
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
         * deletion of user accounts
         
@@ -32,6 +31,7 @@ To Do:
         * figure out how we're getting lat and long of schools (provide link to external site to look it up)
         * give screen for users to see the details of newley created account (just auto-sign them in after signing up)
         * create tests for stuff(Thomas)
+        * uploading pictures for the houses(Rudy)
  
         
 Notes:
