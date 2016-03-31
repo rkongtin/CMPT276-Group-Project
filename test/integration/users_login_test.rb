@@ -38,7 +38,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     #login
     post_via_redirect login_path, session: { email: "admin@sfu.ca", password: "testing" }
-    assert_equal home_user_path(users(:testAdmin)), path
+    assert_equal home_user_path(@admin), path
     
   end
   
@@ -58,38 +58,61 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal user_path(@user), path #should be redirected to their profile
   end
   
-  test "noAccessToUserPagesWhileNotLoggedIn" do #do the tests to make sure non-logged in users can't access user pages
-    #test access to home page
+  #########################################################################
+  # do the tests to make sure non-logged in users can't access user pages #
+  #########################################################################
+  test "notLogInHomePage" do
     get_via_redirect home_user_path(@admin)
     assert_equal sessions_new_path, path
+  end
+  test "notLogInProfile" do
     #test access to users profile page (show)
     get_via_redirect users_path(@admin)
     assert_equal sessions_new_path, path
-    #test access to users index (should have to be admin)
+  end
+  test "notLogInUsersIndex" do
     get_via_redirect users_path
     assert_equal sessions_new_path, path
-    #test access to users settings
+  end
+  test "notLogInSettings" do
     get_via_redirect settings_user_path(@admin)
     assert_equal sessions_new_path, path
+  end
+  test "notLogInChangePass" do
     #test access to password change page
     get_via_redirect changePassword_user_path(@admin)
     assert_equal sessions_new_path, path
-    #test access to change email page
+  end
+  test "notLogInChangeEmail" do
     get_via_redirect changeEmail_user_path(@admin)
     assert_equal sessions_new_path, path
-    #test access to makeAdmin page
+  end
+  test "notLogInMakeAdmin" do
     get_via_redirect makeAdmin_user_path(@admin)
     assert_equal sessions_new_path, path
-    #test access to edit page
+  end
+  test "notLogInEdit" do
     get_via_redirect edit_user_path(@admin)
     assert_equal sessions_new_path, path
   end
   
-  test "noAccessUpdateNotLogIn" do #do the tests to make sure non-logged in users can't access user pages
+  test "notLogInMakeAdminUpdate" do #do the tests to make sure non-logged can't update users
     patch_via_redirect makeAdmin_update_user_path(@admin), admin: false
     assert_equal sessions_new_path, path
     #login(:admin)#password shouldn't have been changed
     assert @admin.admin == true
+  end
+  test "notLogInChangePasswordUpdate" do #do the tests to make sure non-logged can't update users
+    patch_via_redirect changePassword_update_user_path(@admin), user: {password: "123456", password_digest: "123456"}
+    assert_equal sessions_new_path, path
+    login(:testAdmin)#password shouldn't have been changed
+    assert_equal home_user_path(@admin), path
+  end
+  test "notLogInChangeEmailUpdate" do #do the tests to make sure non-logged can't update users
+    patch_via_redirect changeEmail_update_user_path(@admin), email: "NOMORE@sfu.ca"
+    assert_equal sessions_new_path, path
+    login(:testAdmin)#email shouldn't have been changed
+    assert_equal home_user_path(@admin), path
   end
   
   ###################
