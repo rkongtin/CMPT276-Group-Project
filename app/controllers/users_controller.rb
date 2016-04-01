@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
   
   def map
-    @schools = School.all
+    @houses = House.all
   end
   
   def changePassword #page to change password

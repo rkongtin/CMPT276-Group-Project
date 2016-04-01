@@ -3,7 +3,17 @@
   <strong>Address:</strong>
   <%= @house.address %>
 </p>
- 
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @house.lat %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @house.long %>
+</p>
+
 <p>
   <strong>Price: $</strong>
   <%= @house.price %>
@@ -28,6 +38,8 @@
   <strong>Pictures:</strong>
   <%= image_tag @house.pictures.url(:small) %> <!-- show the pictures of the house //-->
 </p>
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@house.lat}%2C#{@house.long}" %> <!-- show the location of the house on a map //-->
 
 </div>
  

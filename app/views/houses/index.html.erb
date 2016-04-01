@@ -5,6 +5,8 @@
         <table>
             <tr>
                 <th class="BorderDraw">Address</th>
+                <th class="BorderDraw">Latitude</th>
+                <th class="BorderDraw">Longitute</th>
                 <th class="BorderDraw">Price</th>
                 <th class="BorderDraw">Square Feet</th>
                 <th class="BorderDraw">Amenities</th>
@@ -15,6 +17,8 @@
             <% @houses.each do |house| %>
             <tr>
                 <td><%= house.address %></td>
+                <td><%= house.lat %></td>
+                <td><%= house.long %></td>
                 <td><%= house.price %></td>
                 <td><%= house.sqft %></td>
                 <td><%= house.amenities %></td>

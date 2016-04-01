@@ -33,13 +33,20 @@ function initialize() {
     // Display a map on the page
     // map vairable now has mapOptions properties
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
+    
+    /*
+    var d;
+    function getDistance(distance){
+        d = document.getElementById("distance").value;;
+    return d;
+    }*/
+    
     /*This is a variable that helps to show the range of a certain region
       (a blue circle on the map in our case)
     */
     var myCity = new google.maps.Circle({
         center:sfu,             //Center of the circle using variable sfu as we indicated above
-        radius:5000,            //Radius of the circle
+        radius:2000,        //Radius of the circle
         strokeColor:"#0000FF",  //Color of the border of the circle
         strokeOpacity:0.8,      //opacity of the border
         strokeWeight:2,         //you know
@@ -54,21 +61,21 @@ function initialize() {
        each array has 2 data: Name of the marker & lat and long for markers to be indicated
     */
     var markers = [
-        <% @schools.each do |school| %>
-            ['<%= school.name %>', <%= school.lat %>, <%= school.long %>],
+        <% @houses.each do |house| %>
+            ['<%= house.address %>', <%= house.lat %>, <%= house.long %>],
         <% end %>
-        //['Random Rental Place', 49.27914, -122.9305]
     ];
 
     // Info of the marker when clicked
     var infoWindowContent = [
+        <% @houses.each do |house| %>
         ['<div class="info_content">' +
-        '<h3>Simon Fraser University</h3>' +      //(1) Simply the header of the info of the marker(pin)
-        '<p>Price: $650</p>' +        '</div>'],  //(2) Contents of the marker goes here
-        ['<div class="info_content">' +
-        '<h3>Random Rental Place</h3>' +          //Same as (1)
-        '<p>Price: $700' +                        //Same as (2)
-        '</div>']
+        '<h3><%= house.address %></h3>' +
+        '<p>Price: $<%= house.price %></p>' +
+        '<p>Square Feet: <%= house.sqft %></p>' +
+        '<p>Amenities: <%= house.amenities %></p>' +
+        '<p>Contact Information: <%= house.contact_info %></p>' + '</div>'],
+        <% end %>
     ];
 
     // Display multiple markers on a map
@@ -117,8 +124,9 @@ function initialize() {
 </head>
 
 <body>
-<div id="map_wrapper">
-    <div id="map_canvas" class="mapping"></div>
-</div>
+<div id="map_canvas" class="mapping"></div><br />
+<p>Select your distance from school in metres(m):</p>
+<input type="text" name="distance" id="distance"><br />
+<input type="button" name="getDistance" value="Search" onclick="getDistance(distance)">
 </body>
 </html>

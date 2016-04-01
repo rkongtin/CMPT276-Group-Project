@@ -1,6 +1,6 @@
 class House < ActiveRecord::Base
-    validates :address, :price, :sqft, :amenities, :contact_info, :pictures, presence: true
-    validates :price, :sqft, numericality: true #:contact_info not sure if this should be a num, so they can write stuff such as 604-111-2222 (with dashes)
+    validates :address, :lat, :long, :price, :sqft, :amenities, :contact_info, :pictures, presence: true
+    validates :lat, :long, :price, :sqft, numericality: true #:contact_info not sure if this should be a num, so they can write stuff such as 604-111-2222 (with dashes)
     has_attached_file :pictures, :styles => { :small => "150x150>" },
                   :url  => "/assets/houses/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/houses/:id/:style/:basename.:extension"
