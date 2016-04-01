@@ -54,8 +54,10 @@ function initialize() {
        each array has 2 data: Name of the marker & lat and long for markers to be indicated
     */
     var markers = [
-        ['Simon Fraser University', 49.2789194023, -122.920480877],
-        ['Random Rental Place', 49.27914, -122.9305]
+        <% @schools.each do |school| %>
+            ['<%= school.name %>', <%= school.lat %>, <%= school.long %>],
+        <% end %>
+        //['Random Rental Place', 49.27914, -122.9305]
     ];
 
     // Info of the marker when clicked

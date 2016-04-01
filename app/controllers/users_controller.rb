@@ -40,6 +40,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def map
+    @schools = School.all
+  end
+  
   def changePassword #page to change password
   end
   
