@@ -25,6 +25,10 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
   end
   
+  def info
+    @house = House.find(params[:id])
+  end
+  
   ##############################
   # all pages without own view #
   ##############################

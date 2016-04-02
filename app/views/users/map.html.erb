@@ -74,7 +74,8 @@ function initialize() {
         '<p>Price: $<%= house.price %></p>' +
         '<p>Square Feet: <%= house.sqft %></p>' +
         '<p>Amenities: <%= house.amenities %></p>' +
-        '<p>Contact Information: <%= house.contact_info %></p>' + '</div>'],
+        '<p>Contact Information: <%= house.contact_info %></p>' + 
+        '<p><%= link_to "Show House Information", house_path(house) %></p>' + '</div>'],
         <% end %>
     ];
 
@@ -124,9 +125,9 @@ function initialize() {
 </head>
 
 <body>
-<div id="map_canvas" class="mapping"></div><br />
-<p>Select your distance from school in metres(m):</p>
-<input type="text" name="distance" id="distance"><br />
-<input type="button" name="getDistance" value="Search" onclick="getDistance(distance)">
+    <div id="map_canvas" class="mapping"></div><br />
+    <p>Select your distance from school in metres(m):</p>
+    <input type="text" name="distance" id="distance"><br />
+    <input type="button" name="getDistance" value="Search" onclick="getDistance(distance)">
 </body>
 </html>

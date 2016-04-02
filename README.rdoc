@@ -8,7 +8,6 @@ To Do:
         * house information page(Charles)
         * allows users to search for a transit by using Translink API(Yong)
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
-        * deletion of user accounts
         * uploading images for the profile page(Yong and Rudy)
         
         
@@ -32,7 +31,8 @@ To Do:
         * create tests for stuff(Thomas)
         * uploading pictures for the houses(Rudy)
         * implement the house information in the window content(Rudy)
- 
+        * deletion of user accounts(Rudy)
+        
         
 Notes:
     * Test names are designed to be self-explanatory, and are written in camel case. This allows for less commenting needed to be done.

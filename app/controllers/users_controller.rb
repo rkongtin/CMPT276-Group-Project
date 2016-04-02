@@ -28,10 +28,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  def edit
-    @user = User.find(params[:id])  
-  end
-  
   def makeAdmin
     @user = User.find(params[:id])
   end
@@ -101,6 +97,13 @@ class UsersController < ApplicationController
     else
       render 'changeEmail'
     end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+  
+    redirect_to users_path
   end
 
   #######################################################

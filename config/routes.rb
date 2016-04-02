@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'houses/new'
   get 'houses/show'
   get 'houses/edit'
+  get 'houses/info'
   resources :houses
 
 
