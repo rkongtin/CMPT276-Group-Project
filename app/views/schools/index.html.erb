@@ -2,7 +2,7 @@
     <body>
         <h1>Listing All Schools [Admin's Only]</h1>
         <%= link_to 'New School', new_school_path %>
-        <table>
+        <table> <!-- create a table with the top row saying "Name     Adddress      Latitude      Longitude      Options", and other rows having each schools info or a link to show, edit or delete //-->
             <tr>
                 <th class="BorderDraw">Name</th>
                 <th class="BorderDraw">Address</th>
@@ -18,7 +18,7 @@
                 <td><%= school.long %></td>
                 <td><%= link_to 'Show', school_path(school) %></td>
                 <td><%= link_to 'Edit', edit_school_path(school) %></td>
-                <td><%= link_to 'Destroy', school_path(school),
+                <td><%= link_to 'Delete', school_path(school),
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %></td> <!-- allow deletion of school, and put confirmation on it //-->
             </tr>

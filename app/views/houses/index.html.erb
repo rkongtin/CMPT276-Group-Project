@@ -2,7 +2,7 @@
     <body>
         <h1>Listing All Houses [Admin's Only]</h1>
         <%= link_to 'New House', new_house_path %>
-        <table>
+        <table> <!-- create a table with the top row saying "Adddress      Latitude      Longitude      Price      Square Feet      Amenities      Contact Information      Pictures      Options", and other rows having each houses info or a link to show, edit or delete //-->
             <tr>
                 <th class="BorderDraw">Address</th>
                 <th class="BorderDraw">Latitude</th>
@@ -26,7 +26,7 @@
                 <td><%= image_tag house.pictures.url(:small) %></td>
                 <td><%= link_to 'Show', house_path(house) %></td>
                 <td><%= link_to 'Edit', edit_house_path(house) %></td>
-                <td><%= link_to 'Destroy', house_path(house),
+                <td><%= link_to 'Delete', house_path(house),
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %></td> <!-- allow deletion of house, and put confirmation on it //-->
             </tr>

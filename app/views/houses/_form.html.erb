@@ -1,63 +1,62 @@
-<%= form_for @house, :html => { :multipart => true } do |f| %>
- <!-- if any errors, display them here //-->
-  <% if @house.errors.any? %>
+<% if @house.errors.any? %> <!-- if any errors, display them here //-->
     <div id="error_explanation">
-      <h2>
-        <%= pluralize(@house.errors.count, "error") %> prohibited
-        this data from being saved:
-      </h2>
-      <ul>
-        <% @house.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+        <h2>
+            <%= pluralize(@house.errors.count, "error") %> prohibited
+            this data from being saved:
+        </h2>
+        <ul>
+            <% @house.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
     </div>
-  <% end %>
+<% end %>
+  
+<!-- area below is for the form elements/fields //-->
+<%= form_for @house, :html => { :multipart => true } do |f| %>
+    <p>
+        <%= f.label :address %><br />
+        <%= f.text_field :address %>
+    </p>
+  
+    <a href="http://www.latlong.net/">Look at Longitude and Latitude</a>
+  
+    <p>
+        <%= f.label :lat %><br />
+        <%= f.text_field :lat %>
+    </p>
+  
+    <p>
+        <%= f.label :long %><br />
+        <%= f.text_field :long %>
+    </p>
  
-  <p>
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </p>
+    <p>
+        <%= f.label :price %><br />
+        <%= f.number_field :price %>
+    </p>
   
-  <a href="http://www.latlong.net/">Look at Longitude and Latitude</a>
+    <p>
+        <%= f.label :sqft %><br />
+        <%= f.number_field :sqft %>
+    </p>
   
-  <p>
-    <%= f.label :lat %><br>
-    <%= f.text_field :lat %>
-  </p>
+    <p>
+        <%= f.label :amenities %><br />
+        <%= f.text_field :amenities %>
+    </p>
   
-  <p>
-    <%= f.label :long %><br>
-    <%= f.text_field :long %>
-  </p>
- 
-  <p>
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </p>
+    <p>
+        <%= f.label :contact_info %><br />
+        <%= f.text_field :contact_info %>
+    </p>
   
-  <p>
-    <%= f.label :sqft %><br>
-    <%= f.number_field :sqft %>
-  </p>
+    <p>
+        <%= f.label :pictures %><br />
+        <%= f.file_field :pictures %> <!-- button to upload pictures //-->
+    </p>
   
-  <p>
-    <%= f.label :amenities %><br>
-    <%= f.text_field :amenities %>
-  </p>
-  
-  <p>
-    <%= f.label :contact_info %><br>
-    <%= f.text_field :contact_info %>
-  </p>
-  
-  <p>
-    <%= f.label :pictures %><br>
-    <%= f.file_field :pictures %> <!-- button to upload pictures //-->
-  </p>
-  
-  <p>
-    <%= f.submit %>
-  </p>
- 
+    <p>
+        <%= f.submit %>
+    </p>
 <% end %>

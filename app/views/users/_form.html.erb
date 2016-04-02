@@ -1,4 +1,4 @@
-<% if @user.errors.any? %> <!-- if there are any errors, use this space to show them, please look up a tutorial to explaing this better //-->
+<% if @user.errors.any? %> <!-- if any errors, display them here //-->
     <div id="error_explanation">
         <h2>
             <%= pluralize(@user.errors.count, "error") %> prohibited
@@ -13,23 +13,32 @@
 <% end %>
         
 <!-- area below is for the form elements/fields //-->
-<%= form_for @user do |f| %>
+<%= form_for @user , :html => { :multipart => true } do |f| %>
     <p>
         <%= f.label :name %>
         <%= f.text_field :name, :required => true, :class => 'input' %>
     </p>
+    
     <p>
         <%= f.label :email %>
         <%= f.email_field :email, :required => true, :class => 'input' %>
     </p>
+    
     <p>
         <%= f.label :password %>
         <%= f.password_field :password, :required => true, :minlength => '6', :class => 'input' %>
     </p>
+    
     <p>
         <%= f.label :password_confirmation, "Confirm Password" %>
         <%= f.password_field :password_confirmation, :required => true, :minlength => '6', :class => 'input' %>
     </p>
+    
+    <p>
+        <%= f.label :pictures %><br>
+        <%= f.file_field :pictures %> <!-- button to upload pictures //-->
+    </p>
+    
     <p>
         <%= f.submit "Submit", class: "btn btn-primary" %>
     </p>
