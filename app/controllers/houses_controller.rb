@@ -2,7 +2,7 @@ class HousesController < ApplicationController
   
   #code mostly copied from schools_controller
   
-  before_filter :requireIsAdmin #run method requireIsAdmin before allowing them to view pages (checks if admin, if not it redirects them)
+  before_filter :requireIsAdmin, except: [:info] #run method requireIsAdmin before allowing them to view pages (checks if admin, if not it redirects them)
   #see   http://stackoverflow.com/questions/5056451/redirect-to-login-page-if-user-not-logged-in
 
   ########################################
