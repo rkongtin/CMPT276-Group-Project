@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update_attribute(:admin, params[:admin])
-      redirect_to @user
+      redirect_to users_path
     else
       render 'makeAdmin'
     end
