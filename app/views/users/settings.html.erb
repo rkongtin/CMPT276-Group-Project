@@ -1,3 +1,35 @@
 <h1>Settings Page</h1>
+<!--
 <%= link_to "Change Email", changeEmail_user_path %><br /><br />
 <%= link_to "Change Password", changePassword_user_path %><br /><br />
+//-->
+<%= form_for @user , :html => { :multipart => true } do |f| %>
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name, :required => true, :class => 'input' %>
+    </p>
+    
+    <p>
+        <%= f.label :email %>
+        <%= f.email_field :email, :required => true, :class => 'input' %>
+    </p>
+    
+    <p>
+        <%= f.label :password %>
+        <%= f.password_field :password, :required => true, :minlength => '6', :class => 'input' %>
+    </p>
+    
+    <p>
+        <%= f.label :password_confirmation, "Confirm Password" %>
+        <%= f.password_field :password_confirmation, :required => true, :minlength => '6', :class => 'input' %>
+    </p>
+    
+    <p>
+        <%= f.label :pictures %><br>
+        <%= f.file_field :pictures, :class => 'input' %> <!-- button to upload pictures //-->
+    </p>
+    
+    <p>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+    </p>
+<% end %>

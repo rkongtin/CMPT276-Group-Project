@@ -2,18 +2,19 @@
     <h1>Profile Information</h1>
     <div class="profileinfo">
         
-        <div class="profile-pic" style="background-image:url(<%= @user.pictures.url(:small) %>) ; float:left"></div>
-        
-        <div style="float:left">
-        <strong>Name:</strong>
-        <%= @user.name %>
-        
- 
+        <div class="profile-pic" style="background-image:url(<%= @user.pictures.url(:small) %>) ; float:left">
+            <p style="padding-left:120px;">
+            <strong>Name:</strong>
+            <%= @user.name %>
+            
         <strong>Email:</strong>
         <%= @user.email %>
+        </p>
         </div>
+        
     
         <div style="clear:both">
         </div>
     </div>
+    <br/><br/><br/>
 </div>
