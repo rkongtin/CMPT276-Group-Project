@@ -1,17 +1,19 @@
 <div style="background-color:white">
     <h1>Profile Information</h1>
-    <p>
+    <div class="profileinfo">
+        
+        <div class="profile-pic" style="background-image:url(<%= @user.pictures.url(:small) %>) ; float:left"></div>
+        
+        <div style="float:left">
         <strong>Name:</strong>
         <%= @user.name %>
-    </p>
+        
  
-    <p>
         <strong>Email:</strong>
         <%= @user.email %>
-    </p>
-  
-    <p>
-        <strong>Pictures:</strong>
-        <%= image_tag @user.pictures.url(:small) %> <!-- show the pictures of the user //-->
-    </p>
+        </div>
+    
+        <div style="clear:both">
+        </div>
+    </div>
 </div>
