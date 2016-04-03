@@ -6,22 +6,22 @@
 <%= form_for @user , :html => { :multipart => true } do |f| %>
     <p>
         <%= f.label :name %>
-        <%= f.text_field :name, :required => true, :class => 'input' %>
+        <%= f.text_field :name, :required => true, :class => 'input', :style => 'margin-left:100px' %>
     </p>
     
     <p>
         <%= f.label :email %>
-        <%= f.email_field :email, :required => true, :class => 'input' %>
+        <%= f.email_field :email, :required => true, :class => 'input', :style => 'margin-left:102px' %>
     </p>
     
     <p>
         <%= f.label :password %>
-        <%= f.password_field :password, :required => true, :minlength => '6', :class => 'input' %>
+        <%= f.password_field :password, :required => true, :minlength => '6', :class => 'input', :style => 'margin-left:70px' %>
     </p>
     
     <p>
         <%= f.label :password_confirmation, "Confirm Password" %>
-        <%= f.password_field :password_confirmation, :required => true, :minlength => '6', :class => 'input' %>
+        <%= f.password_field :password_confirmation, :required => true, :minlength => '6', :class => 'input', :style => 'margin-left:8px' %>
     </p>
     
     <p>
