@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402200503) do
+ActiveRecord::Schema.define(version: 20160403015116) do
 
   create_table "houses", force: :cascade do |t|
     t.string   "address"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160402200503) do
     t.string   "pictures_content_type"
     t.integer  "pictures_file_size"
     t.datetime "pictures_updated_at"
+    t.string   "pictures"
   end
 
 end

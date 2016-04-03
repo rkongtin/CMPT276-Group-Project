@@ -1,36 +1,35 @@
 <div style="background-color:white">
-<p>
-  <strong>Address:</strong>
-  <%= @house.address %>
-</p>
+    <p>
+        <strong>Address:</strong>
+        <%= @house.address %>
+    </p>
 
-<p>
-  <strong>Price: $</strong>
-  <%= @house.price %>
-</p>
+    <p>
+        <strong>Price: $</strong>
+        <%= @house.price %>
+    </p>
 
-<p>
-  <strong>Square Feet:</strong>
-  <%= @house.sqft %>
-</p>
+    <p>
+        <strong>Square Feet:</strong>
+        <%= @house.sqft %>
+    </p>
 
-<p>
-  <strong>Amenities:</strong>
-  <%= @house.amenities %>
-</p>
+    <p>
+        <strong>Amenities:</strong>
+        <%= @house.amenities %>
+    </p>
 
-<p>
-  <strong>Contact Information:</strong>
-  <%= @house.contact_info %>
-</p>
+    <p>
+        <strong>Contact Information:</strong>
+        <%= @house.contact_info %>
+    </p>
 
-<p>
-  <strong>Pictures:</strong>
-  <%= image_tag @house.pictures.url(:small) %> <!-- show the pictures of the house //-->
-</p>
+    <p>
+        <strong>Pictures:</strong>
+        <%= image_tag @house.pictures.url(:small) %> <!-- show the pictures of the house //-->
+    </p>
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@house.lat}%2C#{@house.long}" %> <!-- show the location of the house on a map //-->
-
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@house.lat}%2C#{@house.long}" %> <!-- show the location of the house on a map //-->
 </div>
  
 <%= link_to 'Back', map_user_path %>

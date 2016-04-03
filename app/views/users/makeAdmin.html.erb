@@ -1,5 +1,4 @@
-<!-- if any errors, display them here //-->
-<% if @user.errors.any? %>
+<% if @user.errors.any? %> <!-- if any errors, display them here //-->
     <div id="error_explanation">
         <h2>
             <%= pluralize(@user.errors.count, "error") %> prohibited
@@ -12,7 +11,8 @@
         </ul>
     </div>
 <% end %>
-        
+
+<!-- area below is for the form elements/fields //-->
 <%= form_for @user, :url => makeAdmin_update_user_path(@user) do |f| %>
     <div class="field">
         <p>
@@ -23,12 +23,10 @@
             <%= f.label :admin %>
             <%= hidden_field_tag :admin, false %>
             <%= check_box_tag :admin, checked = true, unchecked = false %>
-            
         </p>
     </div>
     <div>
         <%= f.submit "Submit", class: "btn btn-primary" %> 
         <%= link_to "Back", users_path, class: "btn btn-primary" %>
     </div>
-    <br />
 <% end %>

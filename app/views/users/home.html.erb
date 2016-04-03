@@ -1,4 +1,6 @@
 <h1 class="drop-down">Select your School:</h1>
+
+<!-- area below is for the form elements/fields //-->
 <%= form_for @user do |f| %>
     <div class="drop-down">
         <%= f.collection_select(:name, School.all, :id, :name) %>

@@ -116,7 +116,7 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :pictures)
     end
     
     def requireIsAdmin #code to require to be admin, otherwise redirected to profile page

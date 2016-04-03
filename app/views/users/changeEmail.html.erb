@@ -1,5 +1,4 @@
-<!-- if any errors, display them here //-->
-<% if @user.errors.any? %>
+<% if @user.errors.any? %> <!-- if any errors, display them here //-->
     <div id="error_explanation">
         <h2>
             <%= pluralize(@user.errors.count, "error") %> prohibited
@@ -12,7 +11,8 @@
         </ul>
     </div>
 <% end %>
-        
+
+<!-- area below is for the form elements/fields //-->
 <%= form_for @user, :url => changeEmail_update_user_path(@user) do |f| %>
     <div class="field">
         <%= f.label :email %>
@@ -22,5 +22,4 @@
         <%= f.submit "Submit", class: "btn btn-primary" %> 
         <%= link_to "Back", settings_user_path(@user), class: "btn btn-primary" %>
     </div>
-    <br />
 <% end %>

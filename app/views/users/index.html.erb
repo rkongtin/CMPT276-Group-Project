@@ -1,19 +1,22 @@
 <html>
     <body>
         <h1>Listing All Users [Admin's Only]</h1>
-        <table> <!-- create a table with the top row saying "Name     Email      Admin      Options", and other rows having each users info or a link to make admin or delete //-->
+        <table> <!-- create a table with the top row saying "Name     Email      Admin      Pictures      Options", and other rows having each users info or a link to make admin or delete //-->
             <tr>
                 <th class="BorderDraw">Name</th>
                 <th class="BorderDraw">Email</th>
                 <th class="BorderDraw">Admin</th>
-                <th colspan="2" style="text-align: center;">Options</th> <!-- in the table, have options display in the middle of a 2-column length column //-->
+                <th class="BorderDraw">Pictures</th>
+                <th colspan="3" style="text-align: center;">Options</th> <!-- in the table, have options display in the middle of a 3-column length column //-->
             </tr>
             <% @users.each do |user| %>
             <tr>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
                 <td><%= user.admin %></td>
+                <td><%= image_tag user.pictures.url(:small) %></td>
                 <td><%= link_to "Make Admin", makeAdmin_user_path(user) %></td> <!-- link to each users makeAdmin page (admins access only) //-->
+                <td><%= link_to 'Edit', edit_user_path(user) %></td>
                 <td><%= link_to 'Delete', user_path(user),
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %></td> <!-- allow deletion of user, and put confirmation on it //-->

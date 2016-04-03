@@ -6,12 +6,12 @@
     </p>
  
     <p>
-        <strong>email:</strong>
+        <strong>Email:</strong>
         <%= @user.email %>
     </p>
   
     <p>
         <strong>Pictures:</strong>
-        <%#= image_tag @house.pictures.url(:small) %> <!-- show the pictures of the user //-->
+        <%= image_tag @user.pictures.url(:small) %> <!-- show the pictures of the user //-->
     </p>
 </div>
