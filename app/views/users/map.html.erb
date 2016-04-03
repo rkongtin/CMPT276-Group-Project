@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <script>
-
 // Asynchronously Load the map API (Or simply google API used for this file)
 jQuery(function($) {
     var script = document.createElement('script');
     script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
     document.body.appendChild(script);
 });
+
+var school;
 
 function initialize() {
     var map;    //map variable that will be used to display the map
@@ -28,33 +28,25 @@ function initialize() {
 
 //added feature
 
-
-
     // Display a map on the page
     // map vairable now has mapOptions properties
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     
-    /*
-    var d;
-    function getDistance(distance){
-        d = document.getElementById("distance").value;;
-    return d;
-    }*/
-    
     /*This is a variable that helps to show the range of a certain region
       (a blue circle on the map in our case)
     */
-    var myCity = new google.maps.Circle({
-        center:sfu,             //Center of the circle using variable sfu as we indicated above
-        radius:2000,        //Radius of the circle
-        strokeColor:"#0000FF",  //Color of the border of the circle
-        strokeOpacity:0.8,      //opacity of the border
-        strokeWeight:2,         //you know
-        fillColor:"#0000FF",    //Color of the circle
-        fillOpacity:0.4         //you know
-     });  //
-
-    myCity.setMap(map); // Display the circle on the map
+    school = new google.maps.Circle({
+        center: sfu,             //Center of the circle using variable sfu as we indicated above
+        radius: 1000,         //Radius of the circle
+        strokeColor: "#0000FF",  //Color of the border of the circle
+        strokeOpacity: 0.8,      //opacity of the border
+        strokeWeight: 2,         //you know
+        fillColor: "#0000FF",    //Color of the circle
+        fillOpacity: 0.4         //you know
+    });  //
+    
+    school.setMap(map); // Display the circle on the map
+    
     /*
        var markers: A variable for markers(pins).
        You can add multiple markers here;
@@ -81,7 +73,7 @@ function initialize() {
 
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
-  
+    
     /*
       From here, for loop will help us to display multiple markers on the map
       Generally, it will loop through our array of markers & place each one on the map
@@ -119,15 +111,19 @@ function initialize() {
         this.setZoom(14);
         google.maps.event.removeListener(boundsListener);
     });
-
 }
+
+function changeRadius() {
+    school.set('radius', parseInt(document.getElementById("distance").value * 1000));
+}
+
 </script>
 </head>
 
 <body>
     <div id="map_canvas" class="mapping"></div><br />
-    <p>Select your distance from school in metres(m):</p>
-    <input type="text" name="distance" id="distance"><br />
-    <input type="button" name="getDistance" value="Search" onclick="getDistance(distance)">
+    <p>Select your distance from school in kilometres(km):</p>
+    <input type="number" id="distance" value="1"><br />
+    <button onclick="changeRadius()">Search</button>
 </body>
 </html>
