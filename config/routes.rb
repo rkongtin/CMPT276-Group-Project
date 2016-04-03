@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :houses do
+    member do
+      get 'info'
+    end
+  end
+  
   
   get 'schools/index'
   get 'schools/new'
@@ -30,7 +36,7 @@ Rails.application.routes.draw do
   get 'houses/new'
   get 'houses/show'
   get 'houses/edit'
-  get 'houses/info'
+  #get 'houses/info'
   resources :houses
 
 
