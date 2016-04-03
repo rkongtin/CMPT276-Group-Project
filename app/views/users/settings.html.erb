@@ -1,8 +1,11 @@
 <h1>Settings Page</h1>
-<!--
+
 <%= link_to "Change Email", changeEmail_user_path %><br /><br />
 <%= link_to "Change Password", changePassword_user_path %><br /><br />
-//-->
+
+
+<!-- Why was this change made? This is the settings page, not the edit page. It should provide links to settings, such as change password which had no link to it
+    after this was done. If we need this information, can't we put it in the edit page and make that accessible to people?
 <%= form_for @user , :html => { :multipart => true } do |f| %>
     <p>
         <%= f.label :name %>
@@ -33,3 +36,4 @@
         <%= f.submit "Submit", class: "btn btn-primary" %>
     </p>
 <% end %>
+//-->
