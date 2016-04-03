@@ -8,6 +8,10 @@ class UserTest < ActiveSupport::TestCase
   #Names of tests were designed to be self-explanatory
   #assert_not user.save, assertions must always be true, assert_nots must be false, so if user.save returns false (it didn't save), assert_not will be correct
   
+  def setup
+    @pic = 'http://s1.narvii.com/image/mud4owqv2tonms3hkdpbyxbpy4imm3zh_hq.jpg'
+  end
+  
   test "nameNotNil" do
     user = User.new(:email => 'test@sfu.ca', :password => 'password', :password_confirmation => 'password')
     assert_not user.save
@@ -34,14 +38,14 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "emailNotTaken" do
-    user = User.new(:name => 'test', :email => 'test@sfu.ca', :password => 'password', :password_confirmation => 'password')
-    user1 = User.new(:name => 'test1', :email => 'test@sfu.ca', :password => '1password', :password_confirmation => '1password')
+    user = User.new(:name => 'test', :email => 'test@sfu.ca', :password => 'password', :password_confirmation => 'password', :pictures => @pic)
+    user1 = User.new(:name => 'test1', :email => 'test@sfu.ca', :password => '1password', :password_confirmation => '1password', :pictures => @pic)
     assert user.save #user should be fine
     assert_not user1.save #user1 shouldn't be as email already taken
   end
   
   test "emailDowncase" do
-    user = User.new(:name => 'test', :email => 'TEST@sfu.ca', :password => 'password', :password_confirmation => 'password')
+    user = User.new(:name => 'test', :email => 'TEST@sfu.ca', :password => 'password', :password_confirmation => 'password', :pictures => @pic)
     user.save
     assert user.email == 'test@sfu.ca'
   end
