@@ -37,7 +37,7 @@ function initialize() {
     */
     school = new google.maps.Circle({
         center: sfu,             //Center of the circle using variable sfu as we indicated above
-        radius: 1000,            //Radius of the circle
+        radius: 1000,         //Radius of the circle
         strokeColor: "#0000FF",  //Color of the border of the circle
         strokeOpacity: 0.8,      //opacity of the border
         strokeWeight: 2,         //you know
@@ -114,7 +114,7 @@ function initialize() {
 }
 
 function changeRadius() {
-    school.set('radius', parseInt(document.getElementById("distance").value));
+    school.set('radius', parseInt(document.getElementById("distance").value * 1000));
 }
 
 </script>
@@ -122,8 +122,8 @@ function changeRadius() {
 
 <body>
     <div id="map_canvas" class="mapping"></div><br />
-    <p>Select your distance from school in metres(m):</p>
-    <input type="number" id="distance" value="1000"><br />
+    <p>Select your distance from school in kilometres(km):</p>
+    <input type="number" id="distance" value="1"><br />
     <button onclick="changeRadius()">Search</button>
 </body>
 </html>
