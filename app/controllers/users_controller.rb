@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   #for below, please see the specific methods to see where redirections go
   
   #pages here require user to be admin to access
-  before_action :requireIsAdmin, only: [:index, :edit, :makeAdmin]
+  before_action :requireIsAdmin, only: [:index, :makeAdmin]
   
   #authenticate the correct user for these pages
   #also, it will call @user = User.find(params[:id]), so @user is the variable for the user whose page that is
-  before_action :authenticateUser, only: [:settings, :show, :changePassword, :changeEmail, :home, :map, :changePassword_update, :changeEmail_update]
+  before_action :authenticateUser, only: [:settings, :show, :edit, :update, :changePassword, :changeEmail, :home, :map, :changePassword_update, :changeEmail_update]
     
   
   ########################################
