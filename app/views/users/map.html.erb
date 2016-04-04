@@ -10,21 +10,11 @@ jQuery(function($) {
     script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
     document.body.appendChild(script);
 });
+</script>
+</head>
 
-/*
-BUTTON THINGY:
-Mines weren't pushed for some reason
-and meanwhile Rudy figured out this part as well but I'll leave it here just in case
-function getDistance(){
-  var range = parseInt(document.getElementById("distance").value);
-  myCity = google.maps.Circle({
-    radius: range,         //Radius of the circle
-  });  //
-  initialize(range);
-}
-*/
-
-
+<body>
+<script>
 function calcRoute() {
   var start = document.getElementById("start").value;
   var end = document.getElementById("end").value;
@@ -40,13 +30,12 @@ function calcRoute() {
   });
 }
 
-
-
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  var selectedMode = document.getElementById('mode').value;
   directionsService.route({
     origin: document.getElementById('start').value,
     destination: document.getElementById('end').value,
-    travelMode: google.maps.TravelMode.DRIVING
+    travelMode: google.maps.TravelMode[selectedMode]
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
@@ -78,10 +67,18 @@ function initialize() {
     // map vairable now has mapOptions properties
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(document.getElementById('floating-panel'));
+    directionsDisplay.setPanel(document.getElementById('detail-panel'));
+    var control = document.getElementById('floating-panel');
+    control.style.display = 'block';
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
     var onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
+  document.getElementById('mode').addEventListener('change', function() {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    });
+
     document.getElementById('start').addEventListener('change', onChangeHandler);
     document.getElementById('end').addEventListener('change', onChangeHandler);
 
@@ -160,37 +157,48 @@ function initialize() {
         google.maps.event.removeListener(boundsListener);
     });
 }
+
 function changeRadius() {
     school.set('radius', parseInt(document.getElementById("distance").value * 1000));
 }
 </script>
-</head>
 
-<body>
     <div id="floating-panel">
-    <b>Direction from: </b>
-    <select id="start" onchange="calcRoute();">
-      <option value='727 north road, Coquitlam'>Rental #1</option>
-      <option value='Willingdon Avenue, Burnaby'>Retal #2</option>
-    </select>
-      <br/>
-    <b>Direction to: </b>
-    <select id="end" onchange="calcRoute();">
-      <option value='SFU, burnaby'>SFU, Burnaby</option>
-    </select>
-    </div> <!--
-    <div id="floating-panel">
-      <b>Mode of Travel: </b>
+      <b>Transportation: </b>
       <select id="mode">
-        <option value="DRIVING">Driving</option>
-        <option value="WALKING">Walking</option>
-        <option value="BICYCLING">Bicycling</option>
-        <option value="TRANSIT">Transit</option>
+      <option value="TRANSIT">Transit</option>
+      <option value="DRIVING">Driving</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="WALKING">Walking</option>
+
       </select>
-    </div>-->
+      <br/>
+      <b>Direction from: </b>
+      <select id="start" onchange="calcRoute();">
+        <!--
+        Here in "value" you put the addresses to be calculated for distance.
+        Below are sample addresses.
+        It'd be good if someone can help inputting address data here.
+        This sectiong is the starting point
+        -->
+        <option value='727 north road, Coquitlam'>Rental #1</option>
+        <option value='Willingdon Avenue, Burnaby'>Rental #2</option>
+      </select>
+        <br/>
+      <b>Direction to: </b>
+      <select id="end" onchange="calcRoute();">
+        <!--
+         This section is the destination
+        -->
+        <option value='SFU, burnaby'>SFU, Burnaby</option>
+      </select>
+    </div>
     <div id="map_canvas" class="mapping"></div><br />
-    <p>Select your distance from school in kilometres(km):</p>
-    <input type="number" id="distance" value="1"><br />
+    <p>Select your distance from school in kilometres:</p>
+    <input type="number" id="distance" value="1">(km)
+    <br/>
     <button onclick="changeRadius()">Search</button>
+    <br /><br />
+    <div id="detail-panel"></div>
 </body>
 </html>
