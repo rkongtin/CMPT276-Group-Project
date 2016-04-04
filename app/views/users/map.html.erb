@@ -68,10 +68,10 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('detail-panel'));
-    var control = document.getElementById('floating-panel');
+  /*  var control = document.getElementById('floating-panel');
     control.style.display = 'block';
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-
+*/
     var onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
@@ -181,6 +181,7 @@ function changeRadius() {
         It'd be good if someone can help inputting address data here.
         This sectiong is the starting point
         -->
+        <option value='SFU, burnaby'>- Select -</option>
         <option value='727 north road, Coquitlam'>Rental #1</option>
         <option value='Willingdon Avenue, Burnaby'>Rental #2</option>
       </select>

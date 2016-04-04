@@ -63,7 +63,7 @@ textarea {
 }
 
 #floating-panel {
-  position: absolute; //activate only when var control is activated
+ // position: absolute; //activate only when var control is activated
   top: 10px;
   left: 25%;
   z-index: 5;
@@ -76,6 +76,7 @@ textarea {
   padding-left: 10px;
 }
 #detail-panel {
+  padding: 1px;
   border: 1px solid;
 }
 $bgDefault      : #B12E34;
