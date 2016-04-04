@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
 <script>
 // Asynchronously Load the map API (Or simply google API used for this file)
 jQuery(function($) {
@@ -14,13 +16,15 @@ BUTTON THINGY:
 Mines weren't pushed for some reason
 and meanwhile Rudy figured out this part as well but I'll leave it here just in case
 function getDistance(){
-    var range = document.getElementById("distance").value;
-    range = parseInt(range);
-    initialize(range);
+  var range = parseInt(document.getElementById("distance").value);
+  myCity = google.maps.Circle({
+    radius: range,         //Radius of the circle
+  });  //
+  initialize(range);
 }
 */
 
-/*
+
 function calcRoute() {
   var start = document.getElementById("start").value;
   var end = document.getElementById("end").value;
@@ -35,7 +39,8 @@ function calcRoute() {
     }
   });
 }
-*/
+
+
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   directionsService.route({
@@ -73,7 +78,7 @@ function initialize() {
     // map vairable now has mapOptions properties
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
-
+    directionsDisplay.setPanel(document.getElementById('floating-panel'));
     var onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
@@ -163,35 +168,15 @@ function changeRadius() {
 
 <body>
     <div id="floating-panel">
-    <b>Start: </b>
+    <b>Direction from: </b>
     <select id="start" onchange="calcRoute();">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
+      <option value='727 north road, Coquitlam'>Rental #1</option>
+      <option value='Willingdon Avenue, Burnaby'>Retal #2</option>
     </select>
-    <b>End: </b>
+      <br/>
+    <b>Direction to: </b>
     <select id="end" onchange="calcRoute();">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
+      <option value='SFU, burnaby'>SFU, Burnaby</option>
     </select>
     </div> <!--
     <div id="floating-panel">
