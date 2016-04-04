@@ -11,6 +11,7 @@ jQuery(function($) {
     document.body.appendChild(script);
 });
 </script>
+<script src="http://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
 </head>
 
 <body>
@@ -132,12 +133,15 @@ function initialize() {
           and those info will be placed in var position during iteration
         */
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,      //This is going to be the position of the marker using var position above
-            map: map,                //apply map properties
-            title: markers[i][0]     //title for the marker
-        });
+        var distanceBetween = google.maps.geometry.spherical.computeDistanceBetween(position,sfu);
+        if(distanceBetween < parseInt(document.getElementById("distance").value*1000)){
+          bounds.extend(position);
+          marker = new google.maps.Marker({
+              position: position,      //This is going to be the position of the marker using var position above
+              map: map,                //apply map properties
+              title: markers[i][0]     //title for the marker
+          });
+        }
         // Allow each marker to have an info window
         /*
           Simply, this function is saying that when 'marker' is 'clicked' let the function(marker, i) begin
@@ -159,6 +163,7 @@ function initialize() {
 }
 
 function changeRadius() {
+    initialize();
     school.set('radius', parseInt(document.getElementById("distance").value * 1000));
 }
 </script>
@@ -181,8 +186,8 @@ function changeRadius() {
         It'd be good if someone can help inputting address data here.
         This sectiong is the starting point
         -->
-        <option value='SFU, burnaby'>- Select -</option>
-        <option value='727 north road, Coquitlam'>Rental #1</option>
+        <option value='<%= raw @school.name %>'>- Select -</option>
+        <option value='727 North Road, Burnaby'>Rental #1</option>
         <option value='Willingdon Avenue, Burnaby'>Rental #2</option>
       </select>
         <br/>
@@ -191,7 +196,7 @@ function changeRadius() {
         <!--
          This section is the destination
         -->
-        <option value='SFU, burnaby'>SFU, Burnaby</option>
+        <option value='<%= raw @school.name %>'>SFU, Burnaby</option>
       </select>
     </div>
     <div id="map_canvas" class="mapping"></div><br />
