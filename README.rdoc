@@ -6,9 +6,10 @@ To Do:
         * allow users to change email (currently getting some error when I try, the pages are all there though)
         * make the contact information be only phone number and make the input box accepts only phone number
         * allows users to search for a transit by using Translink API(Yong)
+           --> My code isn't working for some reason, it'd be good if any of u can come up with some code for this api :P ()
         * currently there is not use for users/edit, figure out what to do with it (or just leave it so other code references to it don't break)
-        
-        
+
+
     Done:
         * allowing only admins to access the schools sections
         * admins have a way to access schools, through the bar up top
@@ -32,30 +33,30 @@ To Do:
         * deletion of user accounts(Rudy)
         * uploading images for the profile page(Rudy)
         * house information page(Thomas and Rudy)
-        
-        
+
+
 Notes:
     * Test names are designed to be self-explanatory, and are written in camel case. This allows for less commenting needed to be done.
     * Tests for the house model will be finalised and finished once I know what needs testing (what can be blank, what needs to be their, what's considered invalid)
 
 Useful:
     http://stackoverflow.com/questions/14113057/hcleow-to-have-a-drop-down-select-field-in-a-rails-form
-    
+
     https://developers.google.com/maps/documentation/geocoding/intro#GeocodingRequests
-    
+
     https://github.com/plataformatec/devise/wiki/How-To:-Add-an-Admin-role#option-2---adding-an-admin-attribute
-    
+
     below is for if stuff starts breaking with pages not loading and complaining about couldn't find user with id=home or something
     http://stackoverflow.com/questions/32577058/couldnt-find-user-with-id
-    
+
     Thanks to this for helping me get checkbox for setting admins to working
     http://stackoverflow.com/questions/20379311/how-to-get-blank-checkboxes-to-pass-as-false-to-params
-    
+
     http://guides.rubyonrails.org/routing.html#adding-more-restful-actions
-    
+
     allow users to only view their own pages
     http://stackoverflow.com/questions/4642755/how-to-restrict-users-to-only-edit-their-records
-    
+
     capybara cheat sheet
     https://gist.github.com/zhengjia/428105
 
