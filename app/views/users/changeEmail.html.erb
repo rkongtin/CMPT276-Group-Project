@@ -16,10 +16,10 @@
 <%= form_for @user, :url => changeEmail_update_user_path(@user) do |f| %>
     <div class="field">
         <%= f.label :email %>
-        <%= f.email_field :email, :required => true, :class => 'input' %>
+        <%= f.email_field :email, class: 'form-control' %>
     </div>
     <div>
-        <%= f.submit "Submit", class: "btn btn-primary" %> 
+        <%= f.submit "Submit", class: "btn btn-primary" %>
         <%= link_to "Back", settings_user_path(@user), class: "btn btn-primary" %>
     </div>
 <% end %>
