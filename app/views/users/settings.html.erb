@@ -1,39 +1,10 @@
-<h1>Settings Page</h1>
-
-<%= link_to "Change Email", changeEmail_user_path %><br /><br />
-<%= link_to "Change Password", changePassword_user_path %><br /><br />
-
-
-<!-- Why was this change made? This is the settings page, not the edit page. It should provide links to settings, such as change password which had no link to it
-    after this was done. If we need this information, can't we put it in the edit page and make that accessible to people?
-<%= form_for @user , :html => { :multipart => true } do |f| %>
-    <p>
-        <%= f.label :name %>
-        <%= f.text_field :name, :required => true, :class => 'input', :style => 'margin-left:100px' %>
-    </p>
-    
-    <p>
-        <%= f.label :email %>
-        <%= f.email_field :email, :required => true, :class => 'input', :style => 'margin-left:102px' %>
-    </p>
-    
-    <p>
-        <%= f.label :password %>
-        <%= f.password_field :password, :required => true, :minlength => '6', :class => 'input', :style => 'margin-left:70px' %>
-    </p>
-    
-    <p>
-        <%= f.label :password_confirmation, "Confirm Password" %>
-        <%= f.password_field :password_confirmation, :required => true, :minlength => '6', :class => 'input', :style => 'margin-left:8px' %>
-    </p>
-    
-    <p>
-        <%= f.label :pictures %><br>
-        <%= f.file_field :pictures, :class => 'input' %> <!-- button to upload pictures //-- (should be a > after)
-    </p>
-    
-    <p>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-    </p>
-<% end %>
-//-->
+<div style="background-color:white">
+    <h1>Settings Page</h1>
+    <div class="profile-pic" style="background-image:url(<%= @user.pictures.url(:small) %>) ; float:left"></div>
+    <div class="profile">
+        <%= link_to "Change Email", changeEmail_user_path %><br /><br />
+        <%= link_to "Change Password", changePassword_user_path %><br /><br />
+    </div>
+    <div style="clear:both"></div>
+    <br /><br /><br />
+</div>
