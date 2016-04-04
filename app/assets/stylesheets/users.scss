@@ -34,15 +34,15 @@ a.drop-down {
     color: white;
 }
 
-a.drop-down:hover {
+a.drop-down:hover, a.profile:hover {
     color: #ffbbbc;
     text-decoration: none;
 }
 
 div.profile-pic {
     display: inline-block;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -50,8 +50,25 @@ div.profile-pic {
 }
 
 div.profile {
-    padding-top: 10px;
-    padding-left: 15px;
-    margin-left: 200px;
-    border: 1px solid black;
+    padding-left: 100px;
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
+    border: 3px solid black;
+}
+
+p.profile {
+    color: #B12E34;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 100px;
+}
+
+a.profile {
+    border: 3px solid black;
+    color: white;
+    background-color: #B12E34;
+    padding: 5px 20px;
 }

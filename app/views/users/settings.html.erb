@@ -2,8 +2,8 @@
     <h1>Settings Page</h1>
     <div class="profile-pic" style="background-image:url(<%= @user.pictures.url(:small) %>) ; float:left"></div>
     <div class="profile">
-        <p><%= link_to "Change Email", changeEmail_user_path %></p><br />
-        <p><%= link_to "Change Password", changePassword_user_path %></p>
+        <p class="profile"><%= link_to "Change Email", changeEmail_user_path, class: "profile" %></p>
+        <p class="profile"><%= link_to "Change Password", changePassword_user_path, class: "profile" %></p>
     </div>
     <div style="clear:both"></div>
     <br /><br /><br />
