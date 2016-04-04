@@ -45,7 +45,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   });
 }
 
-var school;
+var school = 0;  //this stuff isnt working yet
+var control = 0;
 function initialize() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -53,12 +54,17 @@ function initialize() {
     var bounds = new google.maps.LatLngBounds();
     /*A variable with location info. (contains lat. and long. info.)
       using lat. and long. as input*/
-    var sfu = new google.maps.LatLng(49.2789194023, -122.920480877);
+    var allSchools = [
+        <% @schools.each do |school| %>
+            ['<%= school.address %>', <%= school.lat %>, <%= school.long %>],
+        <% end %>
+    ]
+    var currentSchool = new google.maps.LatLng(allSchools[school][1], allSchools[school][2]);
     /*A variable for options of the map:
       in this case, center of the map & zoom option are included with the type of the map we use */
     var mapOptions = {
-        center:sfu,    //Center of the map that we are going to see; using the variable, sfu, we previously assigned.
-        zoom:14,        //Zoom
+        center:currentSchool,    //Center of the map that we are going to see; using the variable, sfu, we previously assigned.
+        //zoom:20 + parseInt(document.getElementById("distance").value),        //Zoom
         mapTypeId:google.maps.MapTypeId.ROADMAP  //Type of the map
       //  mapTypeId: 'roadmap' //original
     };
@@ -68,34 +74,38 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('detail-panel'));
-    var control = document.getElementById('floating-panel');
-    control.style.display = 'block';
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+   
+    if ( control == 0 ) { 
+      control = document.getElementById('floating-panel');
+      
+      var onChangeHandler = function() {
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+      };
+      
+      document.getElementById('mode').addEventListener('change', function() {
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+      });
 
-    var onChangeHandler = function() {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
+      document.getElementById('start').addEventListener('change', onChangeHandler);
+      document.getElementById('end').addEventListener('change', onChangeHandler);
     };
-  document.getElementById('mode').addEventListener('change', function() {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-    });
 
-    document.getElementById('start').addEventListener('change', onChangeHandler);
-    document.getElementById('end').addEventListener('change', onChangeHandler);
-
+      control.style.display = 'block';
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
     /*This is a variable that helps to show the range of a certain region
       (a blue circle on the map in our case)
     */
-    school = new google.maps.Circle({
-        center: sfu,             //Center of the circle using variable sfu as we indicated above
-        radius: 1000,         //Radius of the circle
+    area = new google.maps.Circle({ // name changed from 'school' to 'area'
+        center: currentSchool,             //Center of the circle using variable sfu as we indicated above
+        radius: parseInt(document.getElementById("distance").value * 1000),         //Radius of the circle
         strokeColor: "#0000FF",  //Color of the border of the circle
         strokeOpacity: 0.8,      //opacity of the border
         strokeWeight: 2,         //you know
         fillColor: "#0000FF",    //Color of the circle
-        fillOpacity: 0.4         //you know
+        fillOpacity: 0.2         //you know
     });  //
 
-    school.setMap(map); // Display the circle on the map
+    area.setMap(map); // Display the circle on the map,
 
     /*
        var markers: A variable for markers(pins).
@@ -126,11 +136,28 @@ function initialize() {
       From here, for loop will help us to display multiple markers on the map
       Generally, it will loop through our array of markers & place each one on the map
     */
+    var rad = function(x) {    //function for converting x into radians. used in the function below
+      return x * Math.PI / 180;
+    };
+
+    var getDistance = function(lat1, lng1, lat2, lng2) {  //calculation for distance between school and house
+      var R = 6378137; // Earth’s mean radius in meter
+      var dLat = rad(lat2 - lat1);
+      var dLong = rad(lng2 - lng1);
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(rad(lat1)) * Math.cos(rad(lat2)) *
+      Math.sin(dLong / 2) * Math.sin(dLong / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c;
+      return d; // returns the distance in meter
+    };
+    
     for( i = 0; i < markers.length; i++ ) {           //# of looping = # of markers
         /*
           Access to lat and long info from marker variable that we previously made
           and those info will be placed in var position during iteration
         */
+        if (getDistance(markers[i][1], markers[i][2], allSchools[school][1], allSchools[school][2]) < document.getElementById("distance").value * 1000 ) {  //checks that the house is within radius of school
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         bounds.extend(position);
         marker = new google.maps.Marker({
@@ -138,6 +165,7 @@ function initialize() {
             map: map,                //apply map properties
             title: markers[i][0]     //title for the marker
         });
+        }
         // Allow each marker to have an info window
         /*
           Simply, this function is saying that when 'marker' is 'clicked' let the function(marker, i) begin
@@ -153,13 +181,20 @@ function initialize() {
     }
     // Override our map zoom level once our fitBounds function runs (better view of the map by zooming)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+      if (this.getZoom() > 14) {
+                // Change max/min zoom here
         this.setZoom(14);
-        google.maps.event.removeListener(boundsListener);
+      }
+
+        //this.setZoom(14 - (parseInt(document.getElementById("distance").value)));
+      google.maps.event.removeListener(boundsListener);
     });
 }
 
 function changeRadius() {
-    school.set('radius', parseInt(document.getElementById("distance").value * 1000));
+    area.set('radius', parseInt(document.getElementById("distance").value * 1000));
+    school = parseInt(document.getElementById("school_id").value) - 1;
+    initialize();
 }
 </script>
 
@@ -195,10 +230,17 @@ function changeRadius() {
     </div>
     <div id="map_canvas" class="mapping"></div><br />
     <p>Select your distance from school in kilometres:</p>
-    <input type="number" id="distance" value="1">(km)
-    <br/>
+    <input type="number" id="distance" value="1" style="float:left">(km)
+     <%= form_for @school do |f| %>
+      <div class="drop-down" style="margin-top:-22px">
+        <%= f.collection_select(:id, School.all, :id, :name) %>
+      </div>
+    <% end %>
     <button onclick="changeRadius()">Search</button>
     <br /><br />
     <div id="detail-panel"></div>
+    
+    </div>
+    
 </body>
 </html>
