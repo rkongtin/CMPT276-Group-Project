@@ -96,7 +96,9 @@ class UsersController < ApplicationController
   
   def changeEmail_update
     @user = User.find(params[:id])
-    if @user.update_attribute(:email, params[:email])
+    #fixed change email I think, look below. Absolutley no idea why that is
+    #http://stackoverflow.com/questions/9138847/rails-controller-params-are-null-even-though-i-can-see-them-in-debug-output
+    if @user.update_attribute(:email, params[:user][:email])
       redirect_to @user
     else
       render 'changeEmail'
