@@ -96,7 +96,15 @@ class UsersController < ApplicationController
   
   def changeEmail_update
     @user = User.find(params[:id])
-    if @user.update_attribute(:email, params[:email])
+    #fixed change email I think, look below. Absolutley no idea why that is
+    #http://stackoverflow.com/questions/9138847/rails-controller-params-are-null-even-though-i-can-see-them-in-debug-output
+    #see here for making update_attributes work (so validations work), as in code below
+    #http://stackoverflow.com/questions/7083575/updating-user-attributes-without-requiring-password
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+    if @user.update_attributes(:email => params[:user][:email])
       redirect_to @user
     else
       render 'changeEmail'
