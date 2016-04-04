@@ -4,6 +4,6 @@
 <%= form_for @user do |f| %>
     <div class="drop-down">
         <%= f.collection_select(:name, School.all, :id, :name) %>
-        <%= link_to 'GO', map_user_path, class: "drop-down" %>
+        <%= link_to 'GO', map_user_path, class: "btn-primary" %>
     </div>
 <% end %>

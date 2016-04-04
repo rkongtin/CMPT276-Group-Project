@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   #for below, please see the specific methods to see where redirections go
   
   #pages here require user to be admin to access
-  before_action :requireIsAdmin, only: [:index, :edit, :makeAdmin]
+  before_action :requireIsAdmin, only: [:index, :makeAdmin]
   
   #authenticate the correct user for these pages
   #also, it will call @user = User.find(params[:id]), so @user is the variable for the user whose page that is
-  before_action :authenticateUser, only: [:settings, :show, :changePassword, :changeEmail, :home, :map, :changePassword_update, :changeEmail_update]
+  before_action :authenticateUser, only: [:settings, :show, :edit, :update, :changePassword, :changeEmail, :home, :map, :changePassword_update, :changeEmail_update]
     
   
   ########################################
@@ -42,6 +42,8 @@ class UsersController < ApplicationController
   
   def map
     @houses = House.all
+    @schools = School.all
+    @school = School.find(params[:id])
   end
   
   def changePassword #page to change password
@@ -96,7 +98,15 @@ class UsersController < ApplicationController
   
   def changeEmail_update
     @user = User.find(params[:id])
-    if @user.update_attribute(:email, params[:email])
+    #fixed change email I think, look below. Absolutley no idea why that is
+    #http://stackoverflow.com/questions/9138847/rails-controller-params-are-null-even-though-i-can-see-them-in-debug-output
+    #see here for making update_attributes work (so validations work), as in code below
+    #http://stackoverflow.com/questions/7083575/updating-user-attributes-without-requiring-password
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+    if @user.update_attributes(:email => params[:user][:email])
       redirect_to @user
     else
       render 'changeEmail'

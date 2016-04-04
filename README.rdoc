@@ -3,7 +3,6 @@ README
 To Do:
     For the schools views.
         * possibly pretty the thing up
-        * allow users to change email (currently getting some error when I try, the pages are all there though)
         * make the contact information be only phone number and make the input box accepts only phone number
         * allows users to search for a transit by using Translink API(Yong)
            --> My code isn't working for some reason, it'd be good if any of u can come up with some code for this api :P ()
@@ -31,7 +30,8 @@ To Do:
         * implement the house information in the window content(Rudy)
         * deletion of user accounts(Rudy)
         * uploading images for the profile page(Rudy)
-        * house information page(Thomas and Rudy
+        * house information page(Thomas and Rudy)
+        * allow users to change email (Thomas), IT'S FINALLY FIXED I THINK!!!!
         * leave users/edit so other code references to it don't break
 
 
