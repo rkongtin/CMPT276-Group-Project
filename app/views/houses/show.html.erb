@@ -43,5 +43,5 @@
     <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@house.lat}%2C#{@house.long}" %><br /><br /> <!-- show the location of the house on a map //-->
 </div>
  
-<%= link_to 'Edit', edit_house_path(@house) %>
-<%= link_to 'Back', houses_path %>
+<%= link_to 'Edit', edit_house_path(@house), class: "btn-primary" %>
+<%= link_to 'Back', houses_path, class: "btn-primary" %>

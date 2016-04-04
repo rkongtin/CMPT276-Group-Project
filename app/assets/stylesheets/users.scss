@@ -28,18 +28,20 @@ div.drop-down {
     font-size: 20px;
 }
 
-a.drop-down {
+a.btn-primary {
     border: 1px solid black;
     background-color: #B12E34;
     color: white;
 }
 
-a.drop-down:hover, a.profile:hover {
+a.btn-primary:hover, a.profile:hover {
     color: #ffbbbc;
+    background-color: #B12E34;
     text-decoration: none;
 }
 
 div.profile-pic {
+    float: left;
     display: inline-block;
     width: 200px;
     height: 200px;
@@ -68,6 +70,13 @@ p.profile {
 
 a.profile {
     border: 3px solid black;
+    color: white;
+    background-color: #B12E34;
+    padding: 5px 20px;
+}
+
+.btn-primary{
+    border: 2px solid black;
     color: white;
     background-color: #B12E34;
     padding: 5px 20px;

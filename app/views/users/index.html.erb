@@ -15,15 +15,15 @@
                 <td><%= user.email %></td>
                 <td><%= user.admin %></td>
                 <td><%= image_tag user.pictures.url(:small) %></td>
-                <td><%= link_to "Make Admin", makeAdmin_user_path(user) %></td> <!-- link to each users makeAdmin page (admins access only) //-->
-                <td><%= link_to 'Edit', edit_user_path(user) %></td>
-                <td><%= link_to 'Delete', user_path(user),
+                <td><%= link_to "Make Admin", makeAdmin_user_path(user), class: "btn-primary" %></td> <!-- link to each users makeAdmin page (admins access only) //-->
+                <td><%= link_to 'Edit', edit_user_path(user), class: "btn-primary" %></td>
+                <td><%= link_to 'Delete', user_path(user), class: "btn-primary",
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %></td> <!-- allow deletion of user, and put confirmation on it //-->
             </tr>
             <% end %>
         </table>
         <br />
-        <%= link_to 'Back To Home', home_user_path(current_user) %>
+        <%= link_to 'Back To Home', home_user_path(current_user), class: "btn-primary" %>
     </body>
 </html>
