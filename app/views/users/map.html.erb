@@ -157,15 +157,7 @@ function initialize() {
     }
     // Override our map zoom level once our fitBounds function runs (better view of the map by zooming)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-<<<<<<< HEAD
-        if (this.getZoom() > 16) {
-                // Change max/min zoom here
-                this.setZoom(16);
-        }
-        //this.setZoom(14);
-=======
         this.setZoom(14);
->>>>>>> e43f1bf59e7fb85c18c729fbcdd2287c14f456a6
         google.maps.event.removeListener(boundsListener);
     });
 }
