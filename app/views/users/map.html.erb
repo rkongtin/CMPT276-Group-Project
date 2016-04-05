@@ -17,18 +17,18 @@ jQuery(function($) {
 <body>
 <script>
 function calcRoute() {
-  var start = document.getElementById("start").value;
-  var end = document.getElementById("end").value;
-  var request = {
-    origin:start,
-    destination:end,
-    travelMode: google.maps.TravelMode.DRIVING
-  };
-  directionsService.route(request, function(result, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(result);
-    }
-  });
+    var start = document.getElementById("start").value;
+    var end = document.getElementById("end").value;
+    var request = {
+        origin:start,
+        destination:end,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(result);
+        }
+    });
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -61,7 +61,7 @@ function initialize() {
         center:sfu,    //Center of the map that we are going to see; using the variable, sfu, we previously assigned.
         zoom:14,        //Zoom
         mapTypeId:google.maps.MapTypeId.ROADMAP  //Type of the map
-      //  mapTypeId: 'roadmap' //original
+        //  mapTypeId: 'roadmap' //original
     };
 //added feature
     // Display a map on the page
@@ -69,15 +69,15 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('detail-panel'));
-  /*  var control = document.getElementById('floating-panel');
+    /*  var control = document.getElementById('floating-panel');
     control.style.display = 'block';
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-*/
+    */
     var onChangeHandler = function() {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
-  document.getElementById('mode').addEventListener('change', function() {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    document.getElementById('mode').addEventListener('change', function() {
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
     });
 
     document.getElementById('start').addEventListener('change', onChangeHandler);
@@ -105,7 +105,7 @@ function initialize() {
     */
     var markers = [
         <% @houses.each do |house| %>
-            ['<%= house.address %>', <%= house.lat %>, <%= house.long %>],
+        ['<%= house.address %>', <%= house.lat %>, <%= house.long %>],
         <% end %>
     ];
     // Info of the marker when clicked
@@ -134,13 +134,13 @@ function initialize() {
         */
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         var distanceBetween = google.maps.geometry.spherical.computeDistanceBetween(position,sfu);
-        if(distanceBetween < parseInt(document.getElementById("distance").value*1000)){
-          bounds.extend(position);
-          marker = new google.maps.Marker({
-              position: position,      //This is going to be the position of the marker using var position above
-              map: map,                //apply map properties
-              title: markers[i][0]     //title for the marker
-          });
+        if (distanceBetween < parseInt(document.getElementById("distance").value*1000)){
+            bounds.extend(position);
+            marker = new google.maps.Marker({
+                position: position,      //This is going to be the position of the marker using var position above
+                map: map,                //apply map properties
+                title: markers[i][0]     //title for the marker
+            });
         }
         // Allow each marker to have an info window
         /*
@@ -168,18 +168,16 @@ function changeRadius() {
 }
 </script>
 
-    <div id="floating-panel">
-      <b>Transportation: </b>
-      <select id="mode">
-      <option value="TRANSIT">Transit</option>
-      <option value="DRIVING">Driving</option>
-      <option value="BICYCLING">Bicycling</option>
-      <option value="WALKING">Walking</option>
-
-      </select>
-      <br/>
-      <b>Direction from: </b>
-      <select id="start" onchange="calcRoute();">
+<div id="floating-panel">
+    <b>Transportation: </b>
+    <select id="mode">
+        <option value="TRANSIT">Transit</option>
+        <option value="DRIVING">Driving</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="WALKING">Walking</option>
+    </select><br/>
+    <b>Direction from: </b>
+    <select id="start" onchange="calcRoute();">
         <!--
         Here in "value" you put the addresses to be calculated for distance.
         Below are sample addresses.
@@ -189,22 +187,19 @@ function changeRadius() {
         <option value='<%= raw @school.name %>'>- Select -</option>
         <option value='727 North Road, Burnaby'>Rental #1</option>
         <option value='Willingdon Avenue, Burnaby'>Rental #2</option>
-      </select>
-        <br/>
-      <b>Direction to: </b>
-      <select id="end" onchange="calcRoute();">
+    </select><br/>
+    <b>Direction to: </b>
+    <select id="end" onchange="calcRoute();">
         <!--
-         This section is the destination
+        This section is the destination
         -->
         <option value='<%= raw @school.name %>'>SFU, Burnaby</option>
-      </select>
-    </div>
-    <div id="map_canvas" class="mapping"></div><br />
-    <p>Select your distance from school in kilometres:</p>
-    <input type="number" id="distance" value="1">(km)
-    <br/>
-    <button onclick="changeRadius()">Search</button>
-    <br /><br />
-    <div id="detail-panel"></div>
+    </select>
+</div>
+<div id="map_canvas" class="mapping"></div><br />
+<p>Select your distance from school in kilometres:</p>
+<input type="number" id="distance" value="1">(km)<br/>
+<button onclick="changeRadius()">Search</button><br /><br />
+<div id="detail-panel"></div>
 </body>
 </html>
