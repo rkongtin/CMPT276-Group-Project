@@ -31,18 +31,18 @@ function calcRoute() {
     });
 }
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  var selectedMode = document.getElementById('mode').value;
-  directionsService.route({
-    origin: document.getElementById('start').value,
-    destination: document.getElementById('end').value,
-    travelMode: google.maps.TravelMode[selectedMode]
-  }, function(response, status) {
-    if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
+    var selectedMode = document.getElementById('mode').value;
+    directionsService.route({
+        origin: document.getElementById('start').value,
+        destination: document.getElementById('end').value,
+        travelMode: google.maps.TravelMode[selectedMode]
+    }, function(response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }
 var school;
 function initialize() {
@@ -139,20 +139,20 @@ function initialize() {
                 map: map,                //apply map properties
                 title: markers[i][0]     //title for the marker
             });
-
-          // Allow each marker to have an info window
-          /*
+            
+            // Allow each marker to have an info window
+            /*
             Simply, this function is saying that when 'marker' is 'clicked' let the function(marker, i) begin
-          */
+            */
 
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                  infoWindow.setContent(infoWindowContent[i][0]);    //Contents are now stored in the marker
-                  infoWindow.open(map, marker);                      //Now let it display on the map (Need this function in order to display the info when clicked)
-              }
-          })(marker, i));
-          // Automatically center the map fitting all markers on the screen
-          map.fitBounds(bounds);
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(infoWindowContent[i][0]);    //Contents are now stored in the marker
+                    infoWindow.open(map, marker);                      //Now let it display on the map (Need this function in order to display the info when clicked)
+                }
+            })(marker, i));
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
         }
     }
     // Override our map zoom level once our fitBounds function runs (better view of the map by zooming)
