@@ -11,11 +11,12 @@ jQuery(function($) {
     document.body.appendChild(script);
 });
 </script>
-<script src="//maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+<script src="//maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script> <!-- loading google maps API twice may cause errors, but none are ocurring now //-->
 </head>
 
 <body>
 <script>
+//calcRoute not being used right now. didnt work because directionsService was not defined globally and is not passed into the function.
 function calcRoute() {
     return;
     var start = document.getElementById("start").value;
@@ -35,7 +36,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     var selectedMode = document.getElementById('mode').value;
     var start = document.getElementById("start").value;
     var end = document.getElementById("end").value;
-    sfu = new google.maps.LatLng(schools[end][1], schools[end][2]);
+    sfu = new google.maps.LatLng(schools[end][1], schools[end][2]); // may change variable name into 'currentSchool', so that it makes more sense
     school.setCenter( sfu );
     //changeRadius();
     directionsService.route({
@@ -50,17 +51,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         }
     });
 }
-var school=1;
 var schools = {
     <% @schools.each do |school| %>
   '<%= school.id %>' : ['<%= school.address %>', <%= school.lat %>, <%= school.long %>],
     <% end %>
 }
-    var houses = {
-        <% @houses.each do |house| %>
-        '<%= house.id %>' : ['<%= house.address %>', <%= house.lat %>, <%= house.long %>],
-        <% end %>
-    };
+var houses = {
+    <% @houses.each do |house| %>
+    '<%= house.id %>' : ['<%= house.address %>', <%= house.lat %>, <%= house.long %>],
+    <% end %>
+};
 
 var sfu;
 
@@ -71,7 +71,8 @@ function initialize() {
     var directionsDisplay = new google.maps.DirectionsRenderer;
     
     if ( sfu == undefined ) {
-        sfu = new google.maps.LatLng(schools[school][1], schools[school][2]);
+        for (var firstKey in schools) break;
+        sfu = new google.maps.LatLng(schools[firstKey][1], schools[firstKey][2]);
     }
     
     /*A variable with location info. (contains lat. and long. info.)

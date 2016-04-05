@@ -38,9 +38,11 @@ class UsersController < ApplicationController
   
   def home
     @user = User.find(params[:id])
+    @schools = School.all
   end
   
   def map
+    #@currentSchool = School.find(params[:school])
     @houses = House.all
     @schools = School.all
     @school = School.all

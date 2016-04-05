@@ -4,6 +4,6 @@
 <%= form_for @user do |f| %>
     <div class="drop-down">
         <%= f.collection_select(:id, School.all, :id, :name) %>
-        <%= link_to 'GO', map_user_path, class: "btn-primary" %>
+        <%= link_to 'GO', map_user_path, class: "btn-primary", onclick: "document.cookie='school_id='+(document.getElementById('user_id').value)" %>
     </div>
 <% end %>
