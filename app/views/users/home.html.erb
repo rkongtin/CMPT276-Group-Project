@@ -3,7 +3,7 @@
 <!-- area below is for the form elements/fields //-->
 <%= form_for @user do |f| %>
     <div class="drop-down">
-        <%= f.collection_select(:name, School.all, :id, :name) %>
+        <%= f.collection_select(:id, School.all, :id, :name) %>
         <%= link_to 'GO', map_user_path, class: "btn-primary" %>
     </div>
 <% end %>
