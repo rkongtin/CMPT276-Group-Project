@@ -1,4 +1,4 @@
-<h1 class="drop-down">Select your School:</h1>
+<h1 class="drop-down">Start House Hunting!</h1>
 
 <!-- area below is for the form elements/fields //-->
 <%#= form_for @user, :url => map_user_path(@user) do |f| %>
@@ -9,12 +9,15 @@
         <%#= link_to 'GO', map_user_path, class: "btn-primary", onclick: "document.cookie='school_id='+(document.getElementById('user_id').value)" %>
 
     </div>
-//-->
+
 <%# end %>
 <table>
-<% @schools.each do |s| %>
+<%# @schools.each do |s| %>
     <tr>
-        <td><%= link_to s.name, map_user_path(s) %></td>
+        <td><%#=# link_to s.name, map_user_path(s) %></td>
     </tr>
-<% end %>
+<%# end %>
 </table>
+//-->
+
+<%= link_to 'Go', map_user_path, class: "btn-primary" %>
