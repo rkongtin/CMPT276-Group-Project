@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   #authenticate the correct user for these pages
   #also, it will call @user = User.find(params[:id]), so @user is the variable for the user whose page that is
-  before_action :authenticateUser, only: [:settings, :show, :edit, :update, :changePassword, :changeEmail, :home, :map, :changePassword_update, :changeEmail_update]
+  before_action :authenticateUser, only: [:settings, :show, :edit, :update, :changePassword, :changeEmail, :home, :changePassword_update, :changeEmail_update]
     
   
   ########################################
@@ -38,12 +38,13 @@ class UsersController < ApplicationController
   
   def home
     @user = User.find(params[:id])
+    @schools = School.all
   end
   
   def map
     @houses = House.all
     @schools = School.all
-    @school = School.all
+    @school = School.find(params[:id])
   end
   
   def changePassword #page to change password
