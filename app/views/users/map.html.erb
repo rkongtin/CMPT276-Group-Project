@@ -31,18 +31,18 @@ function calcRoute() {
     });
 }
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  var selectedMode = document.getElementById('mode').value;
-  directionsService.route({
-    origin: document.getElementById('start').value,
-    destination: document.getElementById('end').value,
-    travelMode: google.maps.TravelMode[selectedMode]
-  }, function(response, status) {
-    if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
+    var selectedMode = document.getElementById('mode').value;
+    directionsService.route({
+        origin: document.getElementById('start').value,
+        destination: document.getElementById('end').value,
+        travelMode: google.maps.TravelMode[selectedMode]
+    }, function(response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }
 var school;
 function initialize() {
