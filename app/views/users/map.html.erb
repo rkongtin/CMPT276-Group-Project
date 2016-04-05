@@ -11,17 +11,18 @@ jQuery(function($) {
     document.body.appendChild(script);
 });
 </script>
-<script src="http://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+<script src="//maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
 </head>
 
 <body>
 <script>
 function calcRoute() {
+    return;
     var start = document.getElementById("start").value;
     var end = document.getElementById("end").value;
     var request = {
-        origin:start,
-        destination:end,
+        origin: new google.maps.LatLng( houses[start][1], houses[start][2] ),
+        destination: new google.maps.LatLng( schools[end][1], schools[end][2] ),
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function(result, status) {
@@ -31,28 +32,53 @@ function calcRoute() {
     });
 }
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  var selectedMode = document.getElementById('mode').value;
-  directionsService.route({
-    origin: document.getElementById('start').value,
-    destination: document.getElementById('end').value,
-    travelMode: google.maps.TravelMode[selectedMode]
-  }, function(response, status) {
-    if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
+    var selectedMode = document.getElementById('mode').value;
+    var start = document.getElementById("start").value;
+    var end = document.getElementById("end").value;
+    sfu = new google.maps.LatLng(schools[end][1], schools[end][2]);
+    school.setCenter( sfu );
+    //changeRadius();
+    directionsService.route({
+        origin: new google.maps.LatLng( houses[start][1], houses[start][2] ),
+        destination: new google.maps.LatLng( schools[end][1], schools[end][2] ),
+        travelMode: google.maps.TravelMode[selectedMode]
+    }, function(response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }
-var school;
+var school=1;
+var schools = {
+    <% @schools.each do |school| %>
+  '<%= school.id %>' : ['<%= school.address %>', <%= school.lat %>, <%= school.long %>],
+    <% end %>
+}
+    var houses = {
+        <% @houses.each do |house| %>
+        '<%= house.id %>' : ['<%= house.address %>', <%= house.lat %>, <%= house.long %>],
+        <% end %>
+    };
+var sfu;
 function initialize() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
     var map;    //map variable that will be used to display the map
     var bounds = new google.maps.LatLngBounds();
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+
+    if ( sfu == undefined ) {
+        sfu = new google.maps.LatLng(schools[school][1], schools[school][2]);
+    }
+
     /*A variable with location info. (contains lat. and long. info.)
       using lat. and long. as input*/
-    var sfu = new google.maps.LatLng(49.2789194023, -122.920480877);
+    //var schools = [
+    //    <% @schools.each do |school| %>
+    //   ['<%= school.address %>', <%= school.lat %>, <%= school.long %>],
+    //    <% end %>
+    //]
     /*A variable for options of the map:
       in this case, center of the map & zoom option are included with the type of the map we use */
     var mapOptions = {
@@ -79,6 +105,7 @@ function initialize() {
     });
     document.getElementById('start').addEventListener('change', onChangeHandler);
     document.getElementById('end').addEventListener('change', onChangeHandler);
+    //document.getElementById('distance').addEventListener('change', onChangeHandler);
     /*This is a variable that helps to show the range of a certain region
       (a blue circle on the map in our case)
     */
@@ -120,6 +147,8 @@ function initialize() {
       From here, for loop will help us to display multiple markers on the map
       Generally, it will loop through our array of markers & place each one on the map
     */
+    bounds.extend(sfu);
+
     for( i = 0; i < markers.length; i++ ) {           //# of looping = # of markers
         /*
           Access to lat and long info from marker variable that we previously made
@@ -134,32 +163,33 @@ function initialize() {
                 map: map,                //apply map properties
                 title: markers[i][0]     //title for the marker
             });
-          var newOpt = document.createElement("OPTION");
-          newOpt.setAttribute("value", markers[i][0] );
-          var t = document.createTextNode(markers[i][0]);
-          newOpt.appendChild(t);
-          document.getElementById("start").appendChild(newOpt);
-    // Allow each marker to have an info window
-          /*
+            var newOpt = document.createElement("OPTION");
+            newOpt.setAttribute("value", markers[i][0] );
+            var t = document.createTextNode(markers[i][0]);
+            newOpt.appendChild(t);
+            document.getElementById("start").appendChild(newOpt);
+            // Allow each marker to have an info window
+            /*
             Simply, this function is saying that when 'marker' is 'clicked' let the function(marker, i) begin
-          */
-
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                  infoWindow.setContent(infoWindowContent[i][0]);    //Contents are now stored in the marker
-                  infoWindow.open(map, marker);                      //Now let it display on the map (Need this function in order to display the info when clicked)
-              }
-          })(marker, i));
-          // Automatically center the map fitting all markers on the screen
-          map.fitBounds(bounds);
+            */
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(infoWindowContent[i][0]);    //Contents are now stored in the marker
+                    infoWindow.open(map, marker);                      //Now let it display on the map (Need this function in order to display the info when clicked)
+                }
+            })(marker, i));
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
         }
     }
     // Override our map zoom level once our fitBounds function runs (better view of the map by zooming)
     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(14);
+        if (this.getZoom() > 14) {
+                // Change max/min zoom here
+                this.setZoom(14);
+        }
         google.maps.event.removeListener(boundsListener);
     });
-
 }
 function changeRadius() {
     for(i=0; i<document.getElementById("start").options.length; i++){
@@ -168,20 +198,30 @@ function changeRadius() {
     }
     initialize();
     school.set('radius', parseInt(document.getElementById("distance").value * 1000));
-          var length = document.getElementById("start").options.length;
-            for(i = 0; i< document.getElementById("start").options.length-1; i++){
-              for(j = i+1; j < document.getElementById("start").options.length; j++){
-                if(document.getElementById("start").options[i].text == document.getElementById("start").options[j].text){
-                  var y = document.getElementById("start");
-                  y.remove(j);
-                }
-              }
-            }
-
+    for(i = 0; i< document.getElementById("start").options.length-1; i++){
+      for(j = i+1; j < document.getElementById("start").options.length; j++){
+        if(document.getElementById("start").options[i].text == document.getElementById("start").options[j].text){
+          var y = document.getElementById("start");
+          y.remove(j);
+        }
+      }
+    }
 }
 </script>
 
 <div id="floating-panel">
+    <b>School : </b>
+    <select id="end" onchange="calcRoute();">
+        <!--
+        This section is the destination
+        -->
+        <% @schools.each do |school| %>
+        <option value='<%= school.id %>'><%= school.name %></option>
+        <% end %>
+    </select><br/>
+    <b>Rental Property: </b>
+    <select id="start" onchange="calcRoute();">
+    </select><br/>
     <b>Transportation: </b>
     <select id="mode">
         <option value="TRANSIT">Transit</option>
@@ -189,25 +229,6 @@ function changeRadius() {
         <option value="BICYCLING">Bicycling</option>
         <option value="WALKING">Walking</option>
     </select><br/>
-    <b>Direction from: </b>
-    <select id="start" onchange="calcRoute();">
-        <!--
-        Here in "value" you put the addresses to be calculated for distance.
-        Below are sample addresses.
-        It'd be good if someone can help inputting address data here.
-        This sectiong is the starting point
-
-        <option value='<%= raw @school.name %>'>- Select -</option>
-        <option value='9855 Austin Road, Burnaby'>Rental #1</option>
-        <option value='Willingdon Avenue, Burnaby'>Rental #2</option> -->
-    </select><br/>
-    <b>Direction to: </b>
-    <select id="end" onchange="calcRoute();">
-        <!--
-        This section is the destination
-        -->
-        <option value='<%= raw @school.name %>'>SFU, Burnaby</option>
-    </select>
 </div>
 <div id="map_canvas" class="mapping"></div><br />
 <p>Select your distance from school in kilometres:</p>

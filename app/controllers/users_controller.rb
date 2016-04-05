@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def map
     @houses = House.all
     @schools = School.all
-    @school = School.find(params[:id])
+    @school = School.all
   end
   
   def changePassword #page to change password
