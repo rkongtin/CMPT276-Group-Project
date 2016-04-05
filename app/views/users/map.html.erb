@@ -134,8 +134,12 @@ function initialize() {
                 map: map,                //apply map properties
                 title: markers[i][0]     //title for the marker
             });
-
-          // Allow each marker to have an info window
+          var newOpt = document.createElement("OPTION");
+          newOpt.setAttribute("value", markers[i][0] );
+          var t = document.createTextNode(markers[i][0]);
+          newOpt.appendChild(t);
+          document.getElementById("start").appendChild(newOpt);
+    // Allow each marker to have an info window
           /*
             Simply, this function is saying that when 'marker' is 'clicked' let the function(marker, i) begin
           */
@@ -155,10 +159,25 @@ function initialize() {
         this.setZoom(14);
         google.maps.event.removeListener(boundsListener);
     });
+
 }
 function changeRadius() {
+    for(i=0; i<document.getElementById("start").options.length; i++){
+      var resetOpt = document.getElementById("start");
+      resetOpt.remove(i);
+    }
     initialize();
     school.set('radius', parseInt(document.getElementById("distance").value * 1000));
+          var length = document.getElementById("start").options.length;
+            for(i = 0; i< document.getElementById("start").options.length-1; i++){
+              for(j = i+1; j < document.getElementById("start").options.length; j++){
+                if(document.getElementById("start").options[i].text == document.getElementById("start").options[j].text){
+                  var y = document.getElementById("start");
+                  y.remove(j);
+                }
+              }
+            }
+
 }
 </script>
 
@@ -177,10 +196,10 @@ function changeRadius() {
         Below are sample addresses.
         It'd be good if someone can help inputting address data here.
         This sectiong is the starting point
-        -->
+
         <option value='<%= raw @school.name %>'>- Select -</option>
         <option value='9855 Austin Road, Burnaby'>Rental #1</option>
-        <option value='Willingdon Avenue, Burnaby'>Rental #2</option>
+        <option value='Willingdon Avenue, Burnaby'>Rental #2</option> -->
     </select><br/>
     <b>Direction to: </b>
     <select id="end" onchange="calcRoute();">
