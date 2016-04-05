@@ -1,9 +1,19 @@
 <h1 class="drop-down">Select your School:</h1>
 
 <!-- area below is for the form elements/fields //-->
-<%= form_for @user do |f| %>
+<%#= form_for @user, :url => map_user_path(@user) do |f| %>
+<!--
     <div class="drop-down">
-        <%= f.collection_select(:id, School.all, :id, :name) %>
-        <%= link_to 'GO', map_user_path, class: "btn-primary" %>
+        <%#= f.collection_select(:id, School.all, :id, :name) %>
+        <%#= link_to 'GO', map_user_path, class: "btn-primary" %>
+        <%#= f.submit "Submit", class: "btn-primary" %>
     </div>
+//-->
+<%# end %>
+<table>
+<% @schools.each do |s| %>
+    <tr>
+        <td><%= link_to s.name, map_user_path(s) %></td>
+    </tr>
 <% end %>
+</table>
